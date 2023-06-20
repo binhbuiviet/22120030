@@ -104,8 +104,9 @@ void Tao_lop()
 	kiem_tra.close();
 }
 
-void Them_1_sinh_vien(sinh_vien*& sv)
+void Nhap_1_sinh_vien(sinh_vien*& sv)
 {
+	sv = new sinh_vien;
 	//Nhập MSSV;
 	getline(cin, sv->mssv);
 	//Nhập họ và tên đệm
@@ -132,23 +133,17 @@ void Tao_danh_sach(List_sinh_vien& l)
 	l.pTail = nullptr;
 }
 
-void Them_sv_vao_danh_sach(List_sinh_vien& l)
+void Them_sv_vao_duoi_danh_sach(List_sinh_vien& l, sinh_vien*sv)
 {
-	while (0) //Tạm thời để 0 nhưng mà sau đó đổi lại là khi THOÁT thì ra khỏi vòng while
+	if (l.pHead == nullptr)
 	{
-		sinh_vien* sv;
-		sv = new sinh_vien;
-		Them_1_sinh_vien(sv);
-		if (l.pHead == nullptr)
-		{
-			l.pHead = sv;
-			l.pTail = sv;
-		}
-		else
-		{
-			l.pTail->pNext = sv;
-			l.pTail = sv;
-		}
+		l.pHead = sv;
+		l.pTail = sv;
+	}
+	else
+	{
+		l.pTail->pNext = sv;
+		l.pTail = sv;
 	}
 }
 
@@ -172,11 +167,88 @@ void Them_sv_vao_file()
 
 	List_sinh_vien l;
 	Tao_danh_sach(l);
-	Them_sv_vao_danh_sach(l);
+	sinh_vien* sv;
+	while (0)//Sau này sửa thành khi nhập xong thì nhấn xong
+	{
+		Nhap_1_sinh_vien(sv);
+		Them_sv_vao_duoi_danh_sach(l, sv);
+		sv = sv->pNext;
+	}
 	ofstream ghi_file;
 	ghi_file.open(lop);
 	ghi_file << "So thu tu,MSSV,Ho,Ten,Gioi tinh,Ngay sinh,CCCD/CMND\n";
 	sinh_vien* n = l.pHead;
+	int i = 0;
+	while (n != nullptr)
+	{
+		i++;
+		ghi_file << i << ","
+			<< n->mssv << ","
+			<< n->ho << ","
+			<< n->ten << ","
+			<< n->gioi_tinh << ","
+			<< n->ngay_sinh << ","
+			<< n->cccd << "\n";
+		n = n->pNext;
+	}
+	ghi_file.close();
+}
+
+void Them_sinh_vien_vao_file_nhanh()
+{
+	string lop;
+	//Nhập lớp muốn thêm sinh viên
+	getline(cin, lop);
+	lop = lop + ".csv";
+	ifstream check;
+	check.open(lop);
+	while (!check)
+	{
+		//Không có lớp sẵn
+		//Nhập lại;
+		getline(cin, lop);
+		lop = lop + ".csv";
+		check.open(lop);
+	}
+	check.close();
+
+	ifstream fin;
+	string link;
+	cout << "\nNhap lien ket chua danh sach sinh vien ban muon them vao: ";
+	getline(cin, link);
+	fin.open(link);
+	while (!fin)
+	{
+		cout << "Lien ket ban vua nhap khong dan den danh sach phu hop. Vui long nhap lai.\n";
+		cout << "\nNhap lien ket chua danh sach sinh vien ban muon them vao: ";
+		getline(cin, link);
+		fin.open(link);
+	}
+	List_sinh_vien dssv;
+	Tao_danh_sach(dssv);
+	sinh_vien* sv;
+	while (fin.eof() != true)
+	{
+		sv = new sinh_vien;
+		getline(fin, sv->mssv, ',');
+		if (sv->mssv == "")
+			break;
+		getline(fin, sv->ho, ',');
+		getline(fin, sv->ten, ',');
+		getline(fin, sv->gioi_tinh, ',');
+		getline(fin, sv->ngay_sinh, ',');
+		getline(fin, sv->cccd, '\n');
+		sv->pNext = nullptr;
+		Them_sv_vao_duoi_danh_sach(dssv, sv);
+		sv = sv->pNext;
+	}
+	fin.close();
+
+	//In danh sách sinh viên ra màn hình, sau đó hỏi người dùng có muốn nhập danh sách dô lớp hay không?
+	ofstream ghi_file;
+	ghi_file.open(lop);
+	ghi_file << "So thu tu,MSSV,Ho,Ten,Gioi tinh,Ngay sinh,CCCD/CMND\n";
+	sinh_vien* n = dssv.pHead;
 	int i = 0;
 	while (n != nullptr)
 	{

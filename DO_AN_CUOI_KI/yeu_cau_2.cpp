@@ -141,5 +141,50 @@ void tao_khoa_hoc()
 		<< k->khung_gio << "\n";
 	nhap_info_csv.close();
 
+	//Tạo một file csv lưu danh sách sinh viên + điểm trong khóa học đó
+	string ds = Khoa_hoc + "/Danh sach Sinh vien.csv";
+	ofstream dssv;
+	dssv.open(ds);
+	dssv << "STT,MSSV,Ho,Ten,Gioi tinh,Ngay sinh,CCCD/CMND\n";
+	dssv.close();
+}
+
+void Dang_sinh_vien_vao_khoa_hoc()
+{
+	ifstream fin;
+	string link;
+	cout << "\nNhap lien ket chua danh sach sinh vien ban muon them vao: ";
+	getline(cin, link);
+	fin.open(link);
+	while (!fin)
+	{
+		cout << "Lien ket ban vua nhap khong dan den danh sach phu hop. Vui long nhap lai.\n";
+		cout << "\nNhap lien ket chua danh sach sinh vien ban muon them vao: ";
+		getline(cin, link);
+		fin.open(link);
+	}
+	//Lưu ý, nên đưa file có trong tệp tin lớp thì càng tốt ^.^ hahaha
+	List_sinh_vien dssv;
+	Tao_danh_sach(dssv);
+	sinh_vien* sv;
+	while (fin.eof() != true)
+	{
+		sv = new sinh_vien;
+		string thu_tu;
+		getline(fin, thu_tu, ',');
+		getline(fin, sv->mssv, ',');
+		if (sv->mssv == "")
+			break;
+		getline(fin, sv->ho, ',');
+		getline(fin, sv->ten, ',');
+		getline(fin, sv->gioi_tinh, ',');
+		getline(fin, sv->ngay_sinh, ',');
+		getline(fin, sv->cccd, '\n');
+		sv->pNext = nullptr;
+		Them_sv_vao_duoi_danh_sach(dssv, sv);
+		sv = sv->pNext;
+	}
+	fin.close();
+
 
 }
