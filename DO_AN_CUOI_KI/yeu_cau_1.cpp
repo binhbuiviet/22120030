@@ -264,3 +264,23 @@ void Them_sinh_vien_vao_file_nhanh()
 	}
 	ghi_file.close();
 }
+
+void Tao_list_khoa_hoc(List_khoa_hoc& l)
+{
+	l.pHead = nullptr;
+	l.pTail = nullptr;
+}
+
+void Them_khoa_hoc_vao_duoi_danh_sach(List_khoa_hoc& l, khoa_hoc* k)
+{
+	if (l.pHead == nullptr)
+	{
+		l.pHead = k;
+		l.pTail = k;
+	}
+	else
+	{
+		l.pTail->pNext = k;
+		l.pTail = k;
+	}
+}

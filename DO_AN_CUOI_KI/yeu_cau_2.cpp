@@ -46,21 +46,6 @@ void tao_hoc_ky() //LƯU Ý: PHẢI KIỂM TRA TẠO NĂM HỌC TRƯỚC THÌ M�
 
 void tao_khoa_hoc()
 {
-	//Cần kiểm tra học kì đã được tạo hay chưa
-	string course;
-	//Nhập tên khóa học
-	getline(cin, course);
-	string Khoa_hoc = hoc_ki + "/" + course;
-	if (Tao_folder(Khoa_hoc))
-	{
-		//Tạo xong
-	}
-	string info;
-	info = "Thong tin khoa hoc";
-	string INFO; //Đây là để tạo file txt chứa thông tin khóa học
-	INFO = Khoa_hoc + "/" + info + ".txt";
-	ofstream nhap_info;
-	nhap_info.open(INFO);
 	//Nhớ chỉnh đồ họa khúc này nha
 	khoa_hoc* k;
 	k = new khoa_hoc;
@@ -118,6 +103,19 @@ void tao_khoa_hoc()
 		k->khung_gio = "S4(15:30)";
 
 	k->pNext = nullptr;
+	//Cần kiểm tra học kì đã được tạo hay chưa
+	string course;
+	//Tên khóa học này sẽ là tên của khóa học đã tạo sẵn + tên lớp
+	course = k->ten_khoa_hoc + " " + k->ten_lop;
+	string Khoa_hoc = hoc_ki + "/" + course;
+	if (Tao_folder(Khoa_hoc))
+	{
+		//Tạo xong
+	}
+	string INFO; //Đây là để tạo file txt chứa thông tin khóa học
+	INFO = Khoa_hoc + "/Thong tin khoa hoc.txt";
+	ofstream nhap_info;
+	nhap_info.open(INFO);
 	nhap_info << k->ma_mon_hoc << ","
 		<< k->ten_khoa_hoc << ","
 		<< k->ten_lop << ","
@@ -149,7 +147,7 @@ void tao_khoa_hoc()
 	dssv.close();
 }
 
-void Dang_sinh_vien_vao_khoa_hoc()
+void Dang_danh_sach_sinh_vien_vao_khoa_hoc()
 {
 	ifstream fin;
 	string link;
@@ -186,5 +184,113 @@ void Dang_sinh_vien_vao_khoa_hoc()
 	}
 	fin.close();
 
+	//Nhập tên khóa học muốn thêm sinh viên
+	string course;
+	cout << "Nhap ten khoa hoc: ";
+	getline(cin, course);
+	string lop;
+	cout << "Nhap ten lop: ";
+	getline(cin, lop);
+	course = hoc_ki + "/" + course + " " + lop;
+	while (Kiem_tra_folder(course) != true)
+	{
+		cout << "Khoa hoc nay chua duoc khoi tao. Vui long nhap khoa hoc khac.\n";
+		cout << "Nhap ten khoa hoc: ";
+		getline(cin, course);
+		cout << "Nhap ten lop: ";
+		getline(cin, lop);
+		course = hoc_ki + "/" + course + " " + lop;
+	}
 
+	string ds = course + "/Danh sach Sinh vien.csv";
+	int dem = 0;
+	fstream fout;
+	fout.open(ds, ios_base::app);
+	sinh_vien* n = dssv.pHead;
+	while (n != nullptr)
+	{
+		dem++;
+		fout << dem << ","
+			<< n->mssv << ","
+			<< n->ho << ","
+			<< n->ten << ","
+			<< n->gioi_tinh << ","
+			<< n->ngay_sinh << ","
+			<< n->cccd << "\n";
+		n = n->pNext;
+	}
+	fout.close();
+}
+
+void Cap_nhat_khoa_hoc()
+{
+	ifstream fin;
+	fin.open(thong_tin_cac_khoa_hoc);
+	if (!fin)
+	{
+		cout << "Ban chua khoi tao hoc ki. Vui long thu lai";
+		return;
+	}
+	string temp;
+	getline(fin, temp, '\n'); //Đọc dòng đầu tiên trong file
+	khoa_hoc* k;
+	List_khoa_hoc l;
+	Tao_list_khoa_hoc(l);
+	while (fin.eof() != true) //Trích xuất các thông tin khóa học vào danh sách liên kết
+	{
+		k = new khoa_hoc;
+		string so_tin_chi, sinh_vien_toi_da;
+		getline(fin, k->ma_mon_hoc, ',');
+		if (k->ma_mon_hoc == "")
+			break;
+		getline(fin, k->ten_khoa_hoc, ',');
+		getline(fin, k->ten_lop, ',');
+		getline(fin, k->ten_giang_vien, ',');
+		getline(fin, so_tin_chi, ',');
+		k->so_tin_chi = stoi(so_tin_chi);
+		getline(fin, sinh_vien_toi_da, ',');
+		k->sinh_vien_toi_da = stoi(sinh_vien_toi_da);
+		getline(fin, k->buoi_hoc, ',');
+		getline(fin, k->khung_gio, '\n');
+		k->pNext = nullptr;
+		Them_khoa_hoc_vao_duoi_danh_sach(l, k);
+		k = k->pNext;
+	}
+	fin.close();
+
+	//Hỏi xem người dùng muốn cập nhật thông tin của khóa học nào
+	string ten, lop, course;
+	int kiem_tra = 0;
+	cout << "Nhap ten khoa hoc ban muon cap nhat: ";
+	getline(cin, ten);
+	cout << "Nhap lop: ";
+	getline(cin, lop);
+	for (khoa_hoc* a = l.pHead; a != nullptr; a = a->pNext)
+	{
+		if (a->ten_khoa_hoc == ten && a->ten_lop == lop)
+		{
+			kiem_tra = 1;
+			system("cls"); //Đổi sang trang màn hình mới
+			//MENU hỏi người dùng muốn cập nhật thông tin gì của khóa học
+			cout << "Ban muon doi thong tin nao cua khoa hoc.\n";
+			cout << "1. Ma mon hoc.\n"
+				<< "2. Ten khoa hoc.\n"
+				<< "3. Ten lop.\n"
+				<< "4. Ten giang vien.\n"
+				<< "5. So tin chi.\n"
+				<< "6. So luong sinh vien toi da.\n"
+				<< "7. Buoi hoc.\n"
+				<< "8. Khung gio.\n";
+			int choice;
+			cout << "Moi ban chon: ";
+			cin >> choice;
+			while (choice < 1 || choice>8)
+			{
+				cout << "Lua chon khong hop le. Vui long nhap lai.\n";
+				cout << "Moi ban chon: ";
+				cin >> choice;
+			}
+			//Chưa biết làm MENU sao cho đẹp, huhuhu
+		}
+	}
 }

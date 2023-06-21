@@ -80,3 +80,5 @@ void Nhap_1_sinh_vien(sinh_vien*& sv);
 void Tao_danh_sach(List_sinh_vien& l);
 void Them_sv_vao_duoi_danh_sach(List_sinh_vien& l, sinh_vien* sv);
 void Them_sv_vao_file();
+void Tao_list_khoa_hoc(List_khoa_hoc& l);
+void Them_khoa_hoc_vao_duoi_danh_sach(List_khoa_hoc& l, khoa_hoc* k);
