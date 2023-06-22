@@ -251,7 +251,7 @@ void Dang_nhap_tai_khoan_SV(Nguoi_dung_hien_tai& ng)
 	// Mã hóa mật khẩu để xuất ra màn hình dấu *
 	for (int i = 1; i <= 1000; i++)
 	{
-		PASS = _getch();
+		PASS = _getch(); //Dùng để đọc kí tự PASS trên màn hình nhưng lại không in kí tự đó ra trên màn hình dùng trong thư viện <conio.h>
 		if (PASS == 13)
 		{
 			break;

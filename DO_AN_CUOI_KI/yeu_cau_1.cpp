@@ -284,3 +284,12 @@ void Them_khoa_hoc_vao_duoi_danh_sach(List_khoa_hoc& l, khoa_hoc* k)
 		l.pTail = k;
 	}
 }
+
+void goto_XY(int x, int y) //Hàm này dùng để đặt vị trí con trỏ in ra màn hình
+{
+	COORD c;
+	c.X = x;
+	c.Y = y;
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c); //Đây là hàm có sẵn trong thư viện windows.h
+}
+
