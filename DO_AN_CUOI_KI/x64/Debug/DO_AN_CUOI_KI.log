@@ -1,7 +1,3 @@
-﻿  dang_nhap.cpp
-C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\dang_nhap.h(1,10): fatal  error C1083: Cannot open include file: 'yeu_cau_1.h': No such file or directory
-  yeu_cau_1.cpp
-C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.cpp(1,10): fatal  error C1083: Cannot open include file: 'yeu_cau_1.h': No such file or directory
-  yeu_cau_2.cpp
-C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_2.h(1,10): fatal  error C1083: Cannot open include file: 'yeu_cau_1.h': No such file or directory
-  Generating Code...
+﻿  yeu_cau_1.cpp
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.cpp(8,11): error C2440: 'initializing': cannot convert from 'errno_t' to 'tm *'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.cpp(8,11): message : Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or parenthesized function-style cast

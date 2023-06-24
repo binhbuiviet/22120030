@@ -147,6 +147,19 @@ void Them_sv_vao_duoi_danh_sach(List_sinh_vien& l, sinh_vien*sv)
 	}
 }
 
+void Doc_sinh_vien_tu_file(ifstream& fin, sinh_vien*&sv)
+{
+	getline(fin, sv->mssv, ',');
+	if (sv->mssv == "")
+		return;
+	getline(fin, sv->ho, ',');
+	getline(fin, sv->ten, ',');
+	getline(fin, sv->gioi_tinh, ',');
+	getline(fin, sv->ngay_sinh, ',');
+	getline(fin, sv->cccd, '\n');
+	sv->pNext = nullptr;
+}
+
 void Them_sv_vao_file()
 {
 	string lop;
@@ -167,12 +180,12 @@ void Them_sv_vao_file()
 
 	List_sinh_vien l;
 	Tao_danh_sach(l);
-	sinh_vien* sv;
 	while (0)//Sau này sửa thành khi nhập xong thì nhấn xong
 	{
+		sinh_vien* sv;
 		Nhap_1_sinh_vien(sv);
 		Them_sv_vao_duoi_danh_sach(l, sv);
-		sv = sv->pNext;
+
 	}
 	ofstream ghi_file;
 	ghi_file.open(lop);
@@ -226,21 +239,14 @@ void Them_sinh_vien_vao_file_nhanh()
 	}
 	List_sinh_vien dssv;
 	Tao_danh_sach(dssv);
-	sinh_vien* sv;
 	while (fin.eof() != true)
 	{
+		sinh_vien* sv;
 		sv = new sinh_vien;
-		getline(fin, sv->mssv, ',');
+		Doc_sinh_vien_tu_file(fin, sv);
 		if (sv->mssv == "")
 			break;
-		getline(fin, sv->ho, ',');
-		getline(fin, sv->ten, ',');
-		getline(fin, sv->gioi_tinh, ',');
-		getline(fin, sv->ngay_sinh, ',');
-		getline(fin, sv->cccd, '\n');
-		sv->pNext = nullptr;
 		Them_sv_vao_duoi_danh_sach(dssv, sv);
-		sv = sv->pNext;
 	}
 	fin.close();
 

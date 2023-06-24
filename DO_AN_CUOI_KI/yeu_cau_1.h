@@ -11,6 +11,7 @@
 using namespace std;
 
 //Cấu trúc thời gian 
+
 struct Thoi_gian_hien_tai
 {
 	int ngay;
@@ -34,12 +35,12 @@ struct List_lop_hoc
 
 struct sinh_vien
 {
-	string mssv;
-	string ho;
-	string ten;
-	string gioi_tinh;
-	string ngay_sinh;
-	string cccd;
+	string mssv = "";
+	string ho="";
+	string ten="";
+	string gioi_tinh = "";
+	string ngay_sinh = "";
+	string cccd = "";
 	sinh_vien* pNext;
 };
 
@@ -79,6 +80,7 @@ void Tao_lop();
 void Nhap_1_sinh_vien(sinh_vien*& sv);
 void Tao_danh_sach(List_sinh_vien& l);
 void Them_sv_vao_duoi_danh_sach(List_sinh_vien& l, sinh_vien* sv);
+void Doc_sinh_vien_tu_file(ifstream& fin, sinh_vien*& sv);
 void Them_sv_vao_file();
 void Tao_list_khoa_hoc(List_khoa_hoc& l);
 void Them_khoa_hoc_vao_duoi_danh_sach(List_khoa_hoc& l, khoa_hoc* k);

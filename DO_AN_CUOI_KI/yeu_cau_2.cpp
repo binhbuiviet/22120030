@@ -381,8 +381,12 @@ void Cap_nhat_khoa_hoc()
 	cout << "Nhap lop: ";
 	getline(cin, lop);
 	khoa_hoc* a = l.pHead;
-	while (a != nullptr || (a->ten_khoa_hoc == ten && a->ten_lop == lop))
+	while (a != nullptr)
+	{
 		a = a->pNext;
+		if (a->ten_khoa_hoc == ten && a->ten_khoa_hoc == lop)
+			break;
+	}
 	if (a != nullptr)
 		Menu_cap_nhat_khoa_hoc(a);
 	else
@@ -408,10 +412,63 @@ void Cap_nhat_khoa_hoc()
 		if (Doi_ten_file(ten, ten_moi))
 		{
 			//Đổi tên folder thành công
-			string tentxt = ten + "/Thong tin khoa hoc.txt";
-			string tentxt_moi=ten_moi + "/Thong tin khoa hoc.txt";
-			bool doitxt = Doi_ten_file(tentxt, tentxt_moi);
-			string dssv = ten + "/Danh sach Sinh vien.csv";
+			
 		}
 	}
 }
+
+void Them_mot_sinh_vien_vao_khoa_hoc()
+{
+	sinh_vien* sv;
+	cout << "Nhap thong tin sinh vien.\n";
+	Nhap_1_sinh_vien(sv);
+	string ten_khoa_hoc, ten_lop;
+	cout << "Nhap ten khoa hoc: ";
+	getline(cin, ten_khoa_hoc);
+	cout << "Nhap ten lop: ";
+	getline(cin, ten_lop);
+	ten_khoa_hoc = hoc_ki + "/" + ten_khoa_hoc + " " + ten_lop + "/Danh sach Sinh vien.csv";
+	ifstream fin;
+	fin.open(ten_khoa_hoc);
+	if (!fin)
+	{
+		cout << "Khoa hoc nay chua duoc tao.\n";
+		return;
+	}
+	string temp;
+	getline(fin, temp, '\n');
+	List_sinh_vien l;
+	Tao_danh_sach(l);
+	while (fin.eof() != true)
+	{
+		sinh_vien* sv1 = new sinh_vien;
+		string thu_tu;
+		getline(fin, thu_tu, ',');
+		Doc_sinh_vien_tu_file(fin, sv1);
+		if (sv1->mssv == "")
+			break;
+		Them_sv_vao_duoi_danh_sach(l, sv1);
+	}
+	fin.close();
+	Them_sv_vao_duoi_danh_sach(l, sv);
+	//Hỏi lại người dùng có thực sự muốn thêm sinh viên này vào không (Sẽ làm sau)
+	ofstream fout;
+	fout.open(ten_khoa_hoc);
+	fout << temp << "\n";
+	int i = 0;
+	sinh_vien* b = l.pHead;
+	while (b != nullptr)
+	{
+		i++;
+		fout << i << ","
+			<< b->mssv << ","
+			<< b->ho << ","
+			<< b->ten << ","
+			<< b->gioi_tinh << ","
+			<< b->ngay_sinh << ","
+			<< b->cccd << ",";
+		b = b->pNext;
+	}
+	fout.close();
+}
+
