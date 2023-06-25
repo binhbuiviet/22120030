@@ -160,6 +160,17 @@ void Doc_sinh_vien_tu_file(ifstream& fin, sinh_vien*&sv)
 	sv->pNext = nullptr;
 }
 
+void Ghi_1_sinh_vien_vao_file(ofstream& fout, sinh_vien* n, int thu_tu)
+{
+	fout << thu_tu << ","
+		<< n->mssv << ","
+		<< n->ho << ","
+		<< n->ten << ","
+		<< n->gioi_tinh << ","
+		<< n->ngay_sinh << ","
+		<< n->cccd << "\n";
+}
+
 void Them_sv_vao_file()
 {
 	string lop;
@@ -195,13 +206,7 @@ void Them_sv_vao_file()
 	while (n != nullptr)
 	{
 		i++;
-		ghi_file << i << ","
-			<< n->mssv << ","
-			<< n->ho << ","
-			<< n->ten << ","
-			<< n->gioi_tinh << ","
-			<< n->ngay_sinh << ","
-			<< n->cccd << "\n";
+		Ghi_1_sinh_vien_vao_file(ghi_file, n, i);
 		n = n->pNext;
 	}
 	ghi_file.close();
@@ -259,13 +264,7 @@ void Them_sinh_vien_vao_file_nhanh()
 	while (n != nullptr)
 	{
 		i++;
-		ghi_file << i << ","
-			<< n->mssv << ","
-			<< n->ho << ","
-			<< n->ten << ","
-			<< n->gioi_tinh << ","
-			<< n->ngay_sinh << ","
-			<< n->cccd << "\n";
+		Ghi_1_sinh_vien_vao_file(ghi_file, n, i);
 		n = n->pNext;
 	}
 	ghi_file.close();
@@ -299,3 +298,48 @@ void goto_XY(int x, int y) //Hàm này dùng để đặt vị trí con trỏ in
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c); //Đây là hàm có sẵn trong thư viện windows.h
 }
 
+void xoa_sv_dau(List_sinh_vien& l)
+{
+	if (l.pHead == nullptr)
+		return;
+	sinh_vien* temp = l.pHead;
+	l.pHead = l.pHead->pNext;
+	delete temp;
+}
+
+
+void xoa_sv_bat_ki(List_sinh_vien& l, string mssv)
+{
+	if (l.pHead == nullptr)
+	{
+		cout << "Lop chua duoc khoi tao.\n";
+		return;
+	}
+	if (l.pHead->mssv == mssv)
+	{
+		xoa_sv_dau(l);
+		return;
+	}
+	sinh_vien* temp = l.pHead;
+	sinh_vien* a = nullptr;
+	while (temp != nullptr && temp->mssv != mssv)
+	{
+		a = temp;
+		temp = temp->pNext;
+	}
+	if (temp == nullptr)
+	{
+		cout << "Khong co sinh vien do trong lop nay.\n";
+		return;
+	}
+	if (temp == l.pTail)
+	{
+		l.pTail = a;
+		a->pNext = nullptr;
+		delete temp;
+		return;
+	}
+	a->pNext = temp->pNext;
+	delete temp;
+	cout << "Da xoa thanh cong sinh vien ra khoi lop.\n";
+}

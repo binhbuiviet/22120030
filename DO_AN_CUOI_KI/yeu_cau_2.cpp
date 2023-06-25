@@ -167,14 +167,9 @@ void Dang_danh_sach_sinh_vien_vao_khoa_hoc()
 		sinh_vien* sv = new sinh_vien;
 		string thu_tu;
 		getline(fin, thu_tu, ',');
-		getline(fin, sv->mssv, ',');
-		if (sv->mssv == "")
+		if (thu_tu == "")
 			break;
-		getline(fin, sv->ho, ',');
-		getline(fin, sv->ten, ',');
-		getline(fin, sv->gioi_tinh, ',');
-		getline(fin, sv->ngay_sinh, ',');
-		getline(fin, sv->cccd, '\n');
+		Doc_sinh_vien_tu_file(fin, sv);
 		sv->pNext = nullptr;
 		Them_sv_vao_duoi_danh_sach(dssv, sv);
 	}
@@ -390,7 +385,10 @@ void Cap_nhat_khoa_hoc()
 	if (a != nullptr)
 		Menu_cap_nhat_khoa_hoc(a);
 	else
+	{
 		cout << "Khoa hoc ban muon cap nhat khong ton tai.\n";
+		return;
+	}
 
 	 //Nhập lại các thông tin khóa học vào file thông tin các khóa học
 	fstream info_courses;
@@ -405,7 +403,7 @@ void Cap_nhat_khoa_hoc()
 	info_courses.close();
 
 	//Kiểm tra xem folder của khóa học đó có cần đổi tên hay không
-	if (a->ten_khoa_hoc != ten || a->ten_lop != lop)
+	if ((a->ten_khoa_hoc != ten || a->ten_lop != lop)&&a!=nullptr)
 	{
 		ten = hoc_ki + "/" + ten + " " + lop;
 		string ten_moi = hoc_ki + "/" + a->ten_khoa_hoc + " " + a->ten_lop;
@@ -460,15 +458,57 @@ void Them_mot_sinh_vien_vao_khoa_hoc()
 	while (b != nullptr)
 	{
 		i++;
-		fout << i << ","
-			<< b->mssv << ","
-			<< b->ho << ","
-			<< b->ten << ","
-			<< b->gioi_tinh << ","
-			<< b->ngay_sinh << ","
-			<< b->cccd << ",";
+		Ghi_1_sinh_vien_vao_file(fout, b, i);
 		b = b->pNext;
 	}
 	fout.close();
 }
 
+void Xoa_mot_sinh_vien_khoi_khoa_hoc()
+{
+
+	string mssv;
+	cout << "Nhap MSSV ban muon xoa: ";
+	getline(cin, mssv);
+	string ten_khoa_hoc, ten_lop;
+	cout << "Nhap ten khoa hoc: ";
+	getline(cin, ten_khoa_hoc);
+	cout << "Nhap ten lop: ";
+	getline(cin, ten_lop);
+	ten_khoa_hoc = hoc_ki + "/" + ten_khoa_hoc + " " + ten_lop + "/Danh sach Sinh vien.csv";
+	ifstream fin;
+	fin.open(ten_khoa_hoc);
+	if (!fin)
+	{
+		cout << "Khoa hoc nay chua duoc tao.\n";
+		return;
+	}
+	string temp;
+	getline(fin, temp, '\n');
+	List_sinh_vien l;
+	Tao_danh_sach(l);
+	while (fin.eof() != true)
+	{
+		sinh_vien* sv1 = new sinh_vien;
+		string thu_tu;
+		getline(fin, thu_tu, ',');
+		Doc_sinh_vien_tu_file(fin, sv1);
+		if (sv1->mssv == "")
+			break;
+		Them_sv_vao_duoi_danh_sach(l, sv1);
+	}
+	fin.close();
+	xoa_sv_bat_ki(l, mssv);
+	ofstream fout;
+	fout.open(ten_khoa_hoc);
+	fout << temp << "\n";
+	int i = 0;
+	sinh_vien* b = l.pHead;
+	while (b != nullptr)
+	{
+		i++;
+		Ghi_1_sinh_vien_vao_file(fout, b, i);
+		b = b->pNext;
+	}
+	fout.close();
+}
