@@ -24,6 +24,9 @@
     <ClInclude Include="yeu_cau_2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="do_hoa.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dang_nhap.cpp">
@@ -33,6 +36,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="yeu_cau_2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="do_hoa.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

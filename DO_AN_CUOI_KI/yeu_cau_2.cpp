@@ -378,9 +378,9 @@ void Cap_nhat_khoa_hoc()
 	khoa_hoc* a = l.pHead;
 	while (a != nullptr)
 	{
-		a = a->pNext;
 		if (a->ten_khoa_hoc == ten && a->ten_khoa_hoc == lop)
 			break;
+		a = a->pNext;
 	}
 	if (a != nullptr)
 		Menu_cap_nhat_khoa_hoc(a);
@@ -512,3 +512,66 @@ void Xoa_mot_sinh_vien_khoi_khoa_hoc()
 	}
 	fout.close();
 }
+
+void xoa_khoa_hoc()
+{
+	ifstream fin;
+	fin.open(thong_tin_cac_khoa_hoc);
+	if (!fin)
+	{
+		cout << "Ban chua khoi tao hoc ki. Vui long thu lai";
+		return;
+	}
+	string temp;
+	getline(fin, temp, '\n'); //Đọc dòng đầu tiên trong file
+	List_khoa_hoc l;
+	Tao_list_khoa_hoc(l);
+	while (fin.eof() != true) //Trích xuất các thông tin khóa học vào danh sách liên kết
+	{
+		Lay_list_khoa_hoc(fin, l);
+	}
+	fin.close();
+
+	//Hỏi xem người dùng muốn cập nhật thông tin của khóa học nào
+	string ten, lop;
+	cout << "Nhap ten khoa hoc ban muon xoa: ";
+	getline(cin, ten);
+	cout << "Nhap lop: ";
+	getline(cin, lop);
+	khoa_hoc* a = l.pHead;
+	khoa_hoc* b = nullptr;
+	while (a != nullptr)
+	{
+		if (a->ten_khoa_hoc == ten && a->ten_khoa_hoc == lop)
+			break;
+		b = a;
+		a = a->pNext;
+	}
+	if (a != nullptr)
+	{
+		if (a == l.pHead)
+			Xoa_khoa_hoc_khoi_dau_danh_sach(l);
+		else
+			xoa_khoa_hoc_bat_ki_khoi_danh_sach(l, a, b);
+		string xoa_folder = hoc_ki + "/" + ten + " " + lop;
+		xoa_tep_tin(xoa_folder);
+		cout << "Da xoa thanh cong.\n";
+	}
+	else
+	{
+		cout << "Khoa hoc ban muon cap nhat khong ton tai.\n";
+		return;
+	}
+	
+	fstream fout;
+	fout.open(thong_tin_cac_khoa_hoc,ios_base::out);
+	fout << temp << "\n";
+	khoa_hoc* kh = l.pHead;
+	while (kh != nullptr)
+	{
+		Nhap_khoa_hoc_vao_file(fout, kh);
+		kh = kh->pNext;
+	}
+	fout.close();
+}
+

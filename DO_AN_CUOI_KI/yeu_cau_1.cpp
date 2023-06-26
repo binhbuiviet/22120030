@@ -276,6 +276,21 @@ void Tao_list_khoa_hoc(List_khoa_hoc& l)
 	l.pTail = nullptr;
 }
 
+void Xoa_khoa_hoc_khoi_dau_danh_sach(List_khoa_hoc& l)
+{
+	if (l.pHead == nullptr)
+		return;
+	khoa_hoc* temp = l.pHead;
+	l.pHead = l.pHead->pNext;
+	delete temp;
+}
+
+void xoa_khoa_hoc_bat_ki_khoi_danh_sach(List_khoa_hoc& l, khoa_hoc* a, khoa_hoc* b)
+{
+	b->pNext = a->pNext;
+	delete a;
+}
+
 void Them_khoa_hoc_vao_duoi_danh_sach(List_khoa_hoc& l, khoa_hoc* k)
 {
 	if (l.pHead == nullptr)
@@ -290,13 +305,6 @@ void Them_khoa_hoc_vao_duoi_danh_sach(List_khoa_hoc& l, khoa_hoc* k)
 	}
 }
 
-void goto_XY(int x, int y) //Hàm này dùng để đặt vị trí con trỏ in ra màn hình
-{
-	COORD c;
-	c.X = x;
-	c.Y = y;
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c); //Đây là hàm có sẵn trong thư viện windows.h
-}
 
 void xoa_sv_dau(List_sinh_vien& l)
 {
@@ -321,7 +329,7 @@ void xoa_sv_bat_ki(List_sinh_vien& l, string mssv)
 		return;
 	}
 	sinh_vien* temp = l.pHead;
-	sinh_vien* a = nullptr;
+	sinh_vien* a = l.pHead;
 	while (temp != nullptr && temp->mssv != mssv)
 	{
 		a = temp;
@@ -342,4 +350,10 @@ void xoa_sv_bat_ki(List_sinh_vien& l, string mssv)
 	a->pNext = temp->pNext;
 	delete temp;
 	cout << "Da xoa thanh cong sinh vien ra khoi lop.\n";
+}
+
+void xoa_tep_tin(const string& folder)
+{
+	const char* x_folder = folder.c_str();
+	int xoa = remove(x_folder);
 }
