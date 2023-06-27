@@ -23,7 +23,6 @@ struct Thoi_gian_hien_tai
 struct Lop_hoc
 {
 	string ten_lop;
-	Lop_hoc* pPrev;
 	Lop_hoc* pNext;
 };
 
@@ -76,6 +75,7 @@ void Lay_thoi_gian_hien_tai();
 bool Kiem_tra_folder(string& ten_folder);
 bool Tao_folder(string& ten_folder);
 void Tao_mot_nam_hoc();
+void Tao_folder_lop();
 void Tao_lop();
 void Nhap_1_sinh_vien(sinh_vien*& sv);
 void Tao_danh_sach(List_sinh_vien& l);

@@ -131,12 +131,14 @@
     <ClInclude Include="do_hoa.h" />
     <ClInclude Include="yeu_cau_1.h" />
     <ClInclude Include="yeu_cau_2.h" />
+    <ClInclude Include="yeu_cau_3.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dang_nhap.cpp" />
     <ClCompile Include="do_hoa.cpp" />
     <ClCompile Include="yeu_cau_1.cpp" />
     <ClCompile Include="yeu_cau_2.cpp" />
+    <ClCompile Include="yeu_cau_3.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -77,6 +77,18 @@ void Tao_mot_nam_hoc()
 	}
 }
 
+void Tao_folder_lop()
+{
+	string lop = "LOP";
+	if (Kiem_tra_folder(lop) == false)
+	{
+		bool a = Tao_folder(lop);
+		ofstream fout;
+		fout.open("LOP/Danh sach cac lop.txt");
+		fout.close();
+	}
+}
+
 void Tao_lop()
 {
 	string lop;
@@ -90,14 +102,20 @@ void Tao_lop()
 		cin.ignore(32767, '\n');
 		getline(cin, lop);
 	}
+
+	Tao_folder_lop();
 	//Kiểm tra lớp này có đã được tạo chưa
-	lop = lop + ".csv";
 	ifstream kiem_tra;
-	kiem_tra.open(lop);
+	kiem_tra.open("LOP/" + lop + ".csv");
 	if (!kiem_tra)
 	{
 		ofstream tao_lop;
 		tao_lop.open(lop);
+		tao_lop.close();
+		fstream nhap_lop;
+		nhap_lop.open("LOP/Danh sach cac lop.txt", ios_base::app);
+		nhap_lop << lop << "\n";
+		nhap_lop.close();
 	}
 	else
 		cout << "Lop nay da duoc tao.\n";//Nhớ chỉnh đồ họa nha

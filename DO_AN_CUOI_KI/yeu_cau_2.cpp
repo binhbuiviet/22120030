@@ -574,4 +574,3 @@ void xoa_khoa_hoc()
 	}
 	fout.close();
 }
-
