@@ -1,4 +1,4 @@
-#include "yeu_cau_3.h"
+﻿#include "yeu_cau_3.h"
 
 void Tao_list_lop(List_lop_hoc& l)
 {
@@ -55,6 +55,16 @@ void Lay_list_lop(List_lop_hoc& nam1, List_lop_hoc& nam2, List_lop_hoc& nam3, Li
 	fin.close();
 }
 
+void xuat_list_lop(List_lop_hoc l)
+{
+	Lop_hoc* a = l.pHead;
+	while (a != nullptr)
+	{
+		cout << a->ten_lop << "\n";
+		a = a->pNext;
+	}
+}
+
 void Xem_cac_lop()
 {
 	List_lop_hoc nam1;
@@ -66,5 +76,6 @@ void Xem_cac_lop()
 	List_lop_hoc nam4;
 	Tao_list_lop(nam4);
 	Lay_list_lop(nam1, nam2, nam3, nam4);
+	//MENU cho người dùng nhấn muốn xem năm nào
 
 }
