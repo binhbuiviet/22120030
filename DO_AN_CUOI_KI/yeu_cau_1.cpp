@@ -9,29 +9,29 @@ void Lay_thoi_gian_hien_tai()
 	switch (temp->tm_wday)
 	{
 	case 0:
-		wday = "Sun";
+		wday = "Chu nhat";
 		break;
 	case 1:
-		wday = "Mon";
+		wday = "Thu hai";
 		break;
 	case 2:
-		wday = "Tue";
+		wday = "Thu ba";
 		break;
 	case 3:
-		wday = "Wed";
+		wday = "Thu tu";
 		break;
 	case 4:
-		wday = "Thu";
+		wday = "Thu nam";
 		break;
 	case 5:
-		wday = "Fri";
+		wday = "Thu sau";
 		break;
 	case 6:
-		wday = "Sat";
+		wday = "Thu bay";
 		break;
 	}
-	tght.ngay = temp->tm_wday;
-	tght.thang = temp->tm_mon;
+	tght.ngay = temp->tm_mday;
+	tght.thang = 1 + temp->tm_mon;
 	tght.nam = 1900 + temp->tm_year;
 	tght.wday = wday;
 }
@@ -61,6 +61,7 @@ bool Tao_folder(string& ten_folder)
 //Tạo một năm học mới
 void Tao_mot_nam_hoc()
 {
+	Lay_thoi_gian_hien_tai();
 	if (tght.thang >= 9)
 		nam_hoc_hien_tai = to_string(tght.nam) + "-" + to_string(tght.nam + 1);
 	else
@@ -93,13 +94,11 @@ void Tao_lop()
 {
 	string lop;
 	cout << "Tao lop moi: ";//Nhớ chỉnh đồ họa nha
-	cin.ignore(32767, '\n');
 	getline(cin, lop);
-	while (lop[0] != nam_hoc_hien_tai[2] || lop[1] != nam_hoc_hien_tai[3]) //Lớp tạo ra không phải của sinh viên năm nhất
+	while (lop.substr(0, 2) != nam_hoc_hien_tai.substr(2, 2)) //Lớp tạo ra không phải của sinh viên năm nhất
 	{
 		cout << "Tao lai.\n";//Nhớ chỉnh đồ họa nha
 		cout << "Tao lop moi: ";//Nhớ chỉnh đồ họa nha
-		cin.ignore(32767, '\n');
 		getline(cin, lop);
 	}
 
@@ -110,7 +109,7 @@ void Tao_lop()
 	if (!kiem_tra)
 	{
 		ofstream tao_lop;
-		tao_lop.open(lop);
+		tao_lop.open("LOP/" + lop + ".csv");
 		tao_lop.close();
 		fstream nhap_lop;
 		nhap_lop.open("LOP/Danh sach cac lop.txt", ios_base::app);
@@ -194,7 +193,7 @@ void Them_sv_vao_file()
 	string lop;
 	//Nhập lớp muốn thêm sinh viên
 	getline(cin, lop);
-	lop = lop + ".csv";
+	lop = "LOP/" + lop + ".csv";
 	ifstream check;
 	check.open(lop);
 	while (!check)
@@ -202,7 +201,7 @@ void Them_sv_vao_file()
 		//Không có lớp sẵn
 		//Nhập lại;
 		getline(cin, lop);
-		lop = lop + ".csv";
+		lop = "LOP/" + lop + ".csv";
 		check.open(lop);
 	}
 	check.close();
