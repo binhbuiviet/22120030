@@ -121,25 +121,41 @@ void Tao_lop()
 	kiem_tra.close();
 }
 
-void Nhap_1_sinh_vien(sinh_vien*& sv)
+void Nhap_1_sinh_vien(sinh_vien*& sv, int x, int y, int stt)
 {
 	sv = new sinh_vien;
-	//Nhập MSSV;
+	goto_XY(x + 2, y);
+	cout << stt;
+	goto_XY(x + 7, y);
+	cout << "|";
+	goto_XY(x + 10, y);
 	getline(cin, sv->mssv);
-	//Nhập họ và tên đệm
+	goto_XY(x + 20, y);
+	cout << "|";
+	goto_XY(x + 23, y);
 	getline(cin, sv->ho);
-	//Nhập tên
+	goto_XY(x + 42, y);
+	cout << "|";
+	goto_XY(x + 45, y);
 	getline(cin, sv->ten);
-	//Nhập giới tính (Chỉ được nhập là Nam hoặc Nu)
+	goto_XY(x + 55, y);
+	cout << "|";
+	goto_XY(x + 58, y);
 	getline(cin, sv->gioi_tinh);
 	while (sv->gioi_tinh != "Nam" && sv->gioi_tinh != "Nu")
 	{
-		//Nhập lại
+		goto_XY(x + 58, y);
+		cout << "   ";
+		goto_XY(x + 58, y);
 		getline(cin, sv->gioi_tinh);
 	}
-	//Nhập ngày tháng năm sinh
+	goto_XY(x + 68, y);
+	cout << "|";
+	goto_XY(x + 71, y);
 	getline(cin, sv->ngay_sinh);
-	//Nhập CCCD
+	goto_XY(x + 82, y);
+	cout << "|";
+	goto_XY(x + 85, y);
 	getline(cin, sv->cccd);
 	sv->pNext = nullptr;
 }
@@ -150,7 +166,7 @@ void Tao_danh_sach(List_sinh_vien& l)
 	l.pTail = nullptr;
 }
 
-void Them_sv_vao_duoi_danh_sach(List_sinh_vien& l, sinh_vien*sv)
+void Them_sv_vao_duoi_danh_sach(List_sinh_vien& l, sinh_vien* sv)
 {
 	if (l.pHead == nullptr)
 	{
@@ -162,6 +178,36 @@ void Them_sv_vao_duoi_danh_sach(List_sinh_vien& l, sinh_vien*sv)
 		l.pTail->pNext = sv;
 		l.pTail = sv;
 	}
+}
+
+void ve_hop_them_sv_vao_lop(int x, int y)
+{
+	goto_XY(x + 2, y);
+	cout << "STT";
+	goto_XY(x + 7, y);
+	cout << "|";
+	goto_XY(x + 10, y);
+	cout << "MSSV";
+	goto_XY(x + 20, y);
+	cout << "|";
+	goto_XY(x + 23, y);
+	cout << "Ho";
+	goto_XY(x + 42, y);
+	cout << "|";
+	goto_XY(x + 45, y);
+	cout << "Ten";
+	goto_XY(x + 55, y);
+	cout << "|";
+	goto_XY(x + 58, y);
+	cout << "Gioi tinh";
+	goto_XY(x + 68, y);
+	cout << "|";
+	goto_XY(x + 71, y);
+	cout << "Ngay sinh";
+	goto_XY(x + 82, y);
+	cout << "|";
+	goto_XY(x + 85, y);
+	cout << "CCCD/CMND";
 }
 
 void Doc_sinh_vien_tu_file(ifstream& fin, sinh_vien*&sv)
@@ -191,30 +237,58 @@ void Ghi_1_sinh_vien_vao_file(ofstream& fout, sinh_vien* n, int thu_tu)
 void Them_sv_vao_file()
 {
 	string lop;
-	//Nhập lớp muốn thêm sinh viên
+	int so_luong_sv;
+	system("cls");
+	goto_XY(34, 10);
+	cout << "Nhap lop muon them sinh vien: ";
 	getline(cin, lop);
+	goto_XY(34, 11);
+	cout << "So luong sinh vien trong lop: ";
+	cin >> so_luong_sv;
+	cin.ignore();
 	lop = "LOP/" + lop + ".csv";
 	ifstream check;
 	check.open(lop);
 	while (!check)
 	{
-		//Không có lớp sẵn
-		//Nhập lại;
+		Xoa_dong(10);
+		Xoa_dong(11);
+		goto_XY(34, 10);
+		cout << "Nhap lai lop muon them sinh vien: ";
 		getline(cin, lop);
+		goto_XY(34, 11);
+		cout << "So luong sinh vien trong lop: ";
+		cin >> so_luong_sv;
+		cin.ignore();
 		lop = "LOP/" + lop + ".csv";
 		check.open(lop);
 	}
 	check.close();
 
+	//Vẽ cấu trúc
+	system("cls");
+	int x = 6;
+	int y = 4;
+	int w = 105;
+	int h = 3;
+	ve_hop_them_sv_vao_lop(x, y + 1);
+
+
 	List_sinh_vien l;
 	Tao_danh_sach(l);
-	while (0)//Sau này sửa thành khi nhập xong thì nhấn xong
+	int dem = 1;
+	while (dem <= so_luong_sv)//Sau này sửa thành khi nhập xong thì nhấn xong
 	{
+		ve_hop(x, y, w, h);
 		sinh_vien* sv;
-		Nhap_1_sinh_vien(sv);
+		Nhap_1_sinh_vien(sv, x, y + h - 1, dem);
 		Them_sv_vao_duoi_danh_sach(l, sv);
-
+		if (dem != so_luong_sv)
+			Xoa_dong(y + h);
+		h++;
+		dem++;
 	}
+
 	ofstream ghi_file;
 	ghi_file.open(lop);
 	ghi_file << "So thu tu,MSSV,Ho,Ten,Gioi tinh,Ngay sinh,CCCD/CMND\n";
@@ -229,32 +303,50 @@ void Them_sv_vao_file()
 	ghi_file.close();
 }
 
+
 void Them_sinh_vien_vao_file_nhanh()
 {
 	string lop;
-	//Nhập lớp muốn thêm sinh viên
+	int so_luong_sv;
+	system("cls");
+	goto_XY(34, 10);
+	cout << "Nhap lop muon them sinh vien: ";
 	getline(cin, lop);
-	lop = lop + ".csv";
+	goto_XY(34, 11);
+	cout << "So luong sinh vien trong lop: ";
+	cin >> so_luong_sv;
+	cin.ignore();
+	lop = "LOP/" + lop + ".csv";
 	ifstream check;
 	check.open(lop);
 	while (!check)
 	{
-		//Không có lớp sẵn
-		//Nhập lại;
+		Xoa_dong(10);
+		Xoa_dong(11);
+		goto_XY(34, 10);
+		cout << "Nhap lai lop muon them sinh vien: ";
 		getline(cin, lop);
-		lop = lop + ".csv";
+		goto_XY(34, 11);
+		cout << "So luong sinh vien trong lop: ";
+		cin >> so_luong_sv;
+		cin.ignore();
+		lop = "LOP/" + lop + ".csv";
 		check.open(lop);
 	}
 	check.close();
 
+	goto_XY(34, 12);
 	ifstream fin;
 	string link;
-	cout << "\nNhap lien ket chua danh sach sinh vien ban muon them vao: ";
+	cout << "Nhap lien ket chua danh sach sinh vien ban muon them vao: ";
 	getline(cin, link);
 	fin.open(link);
 	while (!fin)
 	{
-		cout << "Lien ket ban vua nhap khong dan den danh sach phu hop. Vui long nhap lai.\n";
+		goto_XY(34, 15);
+		cout << "Lien ket ban vua nhap khong dan den danh sach phu hop. Vui long nhap lai.";
+		Xoa_dong(12);
+		goto_XY(34, 12);
 		cout << "\nNhap lien ket chua danh sach sinh vien ban muon them vao: ";
 		getline(cin, link);
 		fin.open(link);

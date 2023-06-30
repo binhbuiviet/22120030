@@ -27,3 +27,9 @@ void ve_hop(int x, int y, int w, int h)
 		cout << char(124);
 	}
 }
+
+void Xoa_dong(int y)
+{
+	goto_XY(0, y);
+	printf("%c[2K", 27);
+}

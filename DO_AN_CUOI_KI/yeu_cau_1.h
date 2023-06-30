@@ -1,14 +1,4 @@
-﻿#include <iostream>
-#include <fstream>
-#include <string>
-#include <ctime>
-#include <stdio.h>
-#include <conio.h>
-#include <windows.h>
-#include <cstdio>
-#include <sstream>
-
-using namespace std;
+﻿#include "do_hoa.h"
 
 //Cấu trúc thời gian 
 
@@ -77,9 +67,10 @@ bool Tao_folder(string& ten_folder);
 void Tao_mot_nam_hoc();
 void Tao_folder_lop();
 void Tao_lop();
-void Nhap_1_sinh_vien(sinh_vien*& sv);
+void Nhap_1_sinh_vien(sinh_vien*& sv, int x, int y, int stt);
 void Tao_danh_sach(List_sinh_vien& l);
 void Them_sv_vao_duoi_danh_sach(List_sinh_vien& l, sinh_vien* sv);
+void ve_hop_them_sv_vao_lop(int x, int y);
 void Doc_sinh_vien_tu_file(ifstream& fin, sinh_vien*& sv);
 void Ghi_1_sinh_vien_vao_file(ofstream& fout, sinh_vien* n, int thu_tu);
 void Them_sv_vao_file();

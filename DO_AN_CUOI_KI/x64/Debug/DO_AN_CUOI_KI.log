@@ -1,3 +1,93 @@
-﻿  yeu_cau_1.cpp
-C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.cpp(8,11): error C2440: 'initializing': cannot convert from 'errno_t' to 'tm *'
-C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.cpp(8,11): message : Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or parenthesized function-style cast
+﻿  dang_nhap.cpp
+  do_hoa.cpp
+  yeu_cau_1.cpp
+  yeu_cau_2.cpp
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_2.cpp(16,11): warning C4566: character represented by universal-character-name '\u1EA1' cannot be represented in the current code page (1258)
+  yeu_cau_3.cpp
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(16,1): error C2011: 'Thoi_gian_hien_tai': 'struct' type redefinition
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(15,8): message : see declaration of 'Thoi_gian_hien_tai'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(24,1): error C2011: 'Lop_hoc': 'struct' type redefinition
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(23,8): message : see declaration of 'Lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(30,1): error C2011: 'List_lop_hoc': 'struct' type redefinition
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(29,8): message : see declaration of 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(36,1): error C2011: 'sinh_vien': 'struct' type redefinition
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(35,8): message : see declaration of 'sinh_vien'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(47,1): error C2011: 'List_sinh_vien': 'struct' type redefinition
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(46,8): message : see declaration of 'List_sinh_vien'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(53,1): error C2011: 'khoa_hoc': 'struct' type redefinition
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(52,8): message : see declaration of 'khoa_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(66,1): error C2011: 'List_khoa_hoc': 'struct' type redefinition
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(65,8): message : see declaration of 'List_khoa_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(71,20): error C2079: 'tght' uses undefined struct 'Thoi_gian_hien_tai'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(71,20): error C2371: 'tght': redefinition; different basic types
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(71,20): message : see declaration of 'tght'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(72,8): error C2086: 'std::string nam_hoc_hien_tai': redefinition
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(72,8): message : see declaration of 'nam_hoc_hien_tai'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(5,3): error C2027: use of undefined type 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(29,8): message : see declaration of 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(6,3): error C2027: use of undefined type 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(29,8): message : see declaration of 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(11,17): error C2027: use of undefined type 'Lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(23,8): message : see declaration of 'Lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(12,3): error C2027: use of undefined type 'Lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(23,8): message : see declaration of 'Lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(13,3): error C2027: use of undefined type 'Lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(23,8): message : see declaration of 'Lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(18,5): error C2027: use of undefined type 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(29,8): message : see declaration of 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(20,4): error C2027: use of undefined type 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(29,8): message : see declaration of 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(21,4): error C2027: use of undefined type 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(29,8): message : see declaration of 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(25,4): error C2027: use of undefined type 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(29,8): message : see declaration of 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(26,4): error C2027: use of undefined type 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(29,8): message : see declaration of 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(57,6): error C2027: use of undefined type 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(29,8): message : see declaration of 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(59,16): error C2027: use of undefined type 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(29,8): message : see declaration of 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(64,12): error C2027: use of undefined type 'Lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(23,8): message : see declaration of 'Lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(65,8): error C2027: use of undefined type 'Lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(23,8): message : see declaration of 'Lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(72,15): error C2079: 'nam1' uses undefined struct 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(73,2): error C2664: 'void Tao_list_lop(List_lop_hoc &)': cannot convert argument 1 from 'int' to 'List_lop_hoc &'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(3,6): message : see declaration of 'Tao_list_lop'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(73,2): message : while trying to match the argument list '(int)'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(74,15): error C2079: 'nam2' uses undefined struct 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(75,2): error C2664: 'void Tao_list_lop(List_lop_hoc &)': cannot convert argument 1 from 'int' to 'List_lop_hoc &'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(3,6): message : see declaration of 'Tao_list_lop'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(75,2): message : while trying to match the argument list '(int)'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(76,15): error C2079: 'nam3' uses undefined struct 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(77,2): error C2664: 'void Tao_list_lop(List_lop_hoc &)': cannot convert argument 1 from 'int' to 'List_lop_hoc &'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(3,6): message : see declaration of 'Tao_list_lop'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(77,2): message : while trying to match the argument list '(int)'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(78,15): error C2079: 'nam4' uses undefined struct 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(79,2): error C2664: 'void Tao_list_lop(List_lop_hoc &)': cannot convert argument 1 from 'int' to 'List_lop_hoc &'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(3,6): message : see declaration of 'Tao_list_lop'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(79,2): message : while trying to match the argument list '(int)'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(80,2): error C2664: 'void Lay_list_lop(List_lop_hoc &,List_lop_hoc &,List_lop_hoc &,List_lop_hoc &)': cannot convert argument 1 from 'int' to 'List_lop_hoc &'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(30,6): message : see declaration of 'Lay_list_lop'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(80,2): message : while trying to match the argument list '(int, int, int, int)'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(109,4): error C2664: 'void xuat_list_lop(List_lop_hoc)': cannot convert argument 1 from 'int' to 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(109,18): message : use of undefined type 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(29,8): message : see declaration of 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(57,6): message : see declaration of 'xuat_list_lop'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(109,4): message : while trying to match the argument list '(int)'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(112,4): error C2664: 'void xuat_list_lop(List_lop_hoc)': cannot convert argument 1 from 'int' to 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(112,18): message : use of undefined type 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(29,8): message : see declaration of 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(57,6): message : see declaration of 'xuat_list_lop'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(112,4): message : while trying to match the argument list '(int)'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(115,4): error C2664: 'void xuat_list_lop(List_lop_hoc)': cannot convert argument 1 from 'int' to 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(115,18): message : use of undefined type 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(29,8): message : see declaration of 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(57,6): message : see declaration of 'xuat_list_lop'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(115,4): message : while trying to match the argument list '(int)'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(118,4): error C2664: 'void xuat_list_lop(List_lop_hoc)': cannot convert argument 1 from 'int' to 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(118,18): message : use of undefined type 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_1.h(29,8): message : see declaration of 'List_lop_hoc'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(57,6): message : see declaration of 'xuat_list_lop'
+C:\Users\admins\source\repos\DO_AN_CUOI_KI\DO_AN_CUOI_KI\yeu_cau_3.cpp(118,4): message : while trying to match the argument list '(int)'
+  Generating Code...
