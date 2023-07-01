@@ -81,3 +81,4 @@ void Them_khoa_hoc_vao_duoi_danh_sach(List_khoa_hoc& l, khoa_hoc* k);
 void xoa_sv_dau(List_sinh_vien& l);
 void xoa_sv_bat_ki(List_sinh_vien& l, string mssv);
 void xoa_tep_tin(const string& folder);
+void Xuat_1_sv_cua_lop(sinh_vien* sv, int x, int y, int stt);

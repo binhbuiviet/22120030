@@ -210,8 +210,10 @@ void ve_hop_them_sv_vao_lop(int x, int y)
 	cout << "CCCD/CMND";
 }
 
-void Doc_sinh_vien_tu_file(ifstream& fin, sinh_vien*&sv)
+void Doc_sinh_vien_tu_file(ifstream& fin, sinh_vien*& sv)
 {
+	string stt;
+	getline(fin, stt, ',');
 	getline(fin, sv->mssv, ',');
 	if (sv->mssv == "")
 		return;
@@ -338,7 +340,8 @@ void Them_sinh_vien_vao_file_nhanh()
 	goto_XY(34, 12);
 	ifstream fin;
 	string link;
-	cout << "Nhap lien ket chua danh sach sinh vien ban muon them vao: ";
+	cout << "Nhap lien ket chua danh sach sinh vien ban muon them vao:";
+	goto_XY(34, 13);
 	getline(cin, link);
 	fin.open(link);
 	while (!fin)
@@ -347,12 +350,17 @@ void Them_sinh_vien_vao_file_nhanh()
 		cout << "Lien ket ban vua nhap khong dan den danh sach phu hop. Vui long nhap lai.";
 		Xoa_dong(12);
 		goto_XY(34, 12);
-		cout << "\nNhap lien ket chua danh sach sinh vien ban muon them vao: ";
+		cout << "\nNhap lien ket chua danh sach sinh vien ban muon them vao:";
+		goto_XY(34, 13);
 		getline(cin, link);
 		fin.open(link);
 	}
+
 	List_sinh_vien dssv;
 	Tao_danh_sach(dssv);
+	string temp;
+	getline(fin, temp, '\n');
+	int so_luong = 0;
 	while (fin.eof() != true)
 	{
 		sinh_vien* sv;
@@ -361,22 +369,65 @@ void Them_sinh_vien_vao_file_nhanh()
 		if (sv->mssv == "")
 			break;
 		Them_sv_vao_duoi_danh_sach(dssv, sv);
+		so_luong++;
+		if (so_luong == so_luong_sv)
+			break;
 	}
 	fin.close();
 
 	//In danh sách sinh viên ra màn hình, sau đó hỏi người dùng có muốn nhập danh sách dô lớp hay không?
-	ofstream ghi_file;
-	ghi_file.open(lop);
-	ghi_file << "So thu tu,MSSV,Ho,Ten,Gioi tinh,Ngay sinh,CCCD/CMND\n";
-	sinh_vien* n = dssv.pHead;
-	int i = 0;
-	while (n != nullptr)
+	//Xuat danh sach sinh vien ra man hinh
+	system("cls");
+	ve_hop_them_sv_vao_lop(6, 5);
+	int x = 6;
+	int y = 4;
+	int w = 105;
+	int h = 3;
+	sinh_vien* a = dssv.pHead;
+	ve_hop(x, y, w, h + so_luong - 1);
+	int stt = 1;
+	while (a != nullptr)
 	{
-		i++;
-		Ghi_1_sinh_vien_vao_file(ghi_file, n, i);
-		n = n->pNext;
+		Xuat_1_sv_cua_lop(a, x, y + h - 1, stt);
+		h++;
+		stt++;
+		a = a->pNext;
 	}
-	ghi_file.close();
+	goto_XY(6, so_luong + 12);
+	cout << "Ban co muon nhap nhung sinh vien nay khong?";
+	goto_XY(6, so_luong + 13);
+	cout << "Nhan 0 de khong nhap.";
+	goto_XY(6, so_luong + 14);
+	cout << "Nhan 1 de nhap.";
+	char chon;
+	goto_XY(6, so_luong + 15);
+	cout << "Moi ban chon: ";
+	cin >> chon;
+	while (chon != '0' && chon != '1')
+	{
+		Xoa_dong(so_luong + 15);
+		goto_XY(6, so_luong + 12);
+		cout << "Lua chon khong hop le. Vui long nhap lai.";
+		goto_XY(6, so_luong + 15);
+		cout << "Moi ban chon: ";
+		cin >> chon;
+	}
+
+	if (chon == '1')
+	{
+		ofstream ghi_file;
+		ghi_file.open(lop);
+		ghi_file << "So thu tu,MSSV,Ho,Ten,Gioi tinh,Ngay sinh,CCCD/CMND\n";
+		sinh_vien* n = dssv.pHead;
+		int i = 0;
+		while (n != nullptr)
+		{
+			i++;
+			Ghi_1_sinh_vien_vao_file(ghi_file, n, i);
+			n = n->pNext;
+		}
+		ghi_file.close();
+	}
 }
 
 void Tao_list_khoa_hoc(List_khoa_hoc& l)
@@ -465,4 +516,34 @@ void xoa_tep_tin(const string& folder)
 {
 	const char* x_folder = folder.c_str();
 	int xoa = remove(x_folder);
+}
+
+void Xuat_1_sv_cua_lop(sinh_vien* sv, int x, int y, int stt)
+{
+	goto_XY(x + 2, y);
+	cout << stt;
+	goto_XY(x + 7, y);
+	cout << "|";
+	goto_XY(x + 10, y);
+	cout << sv->mssv;
+	goto_XY(x + 20, y);
+	cout << "|";
+	goto_XY(x + 23, y);
+	cout << sv->ho;
+	goto_XY(x + 42, y);
+	cout << "|";
+	goto_XY(x + 45, y);
+	cout << sv->ten;
+	goto_XY(x + 55, y);
+	cout << "|";
+	goto_XY(x + 58, y);
+	cout << sv->gioi_tinh;
+	goto_XY(x + 68, y);
+	cout << "|";
+	goto_XY(x + 71, y);
+	cout << sv->ngay_sinh;
+	goto_XY(x + 82, y);
+	cout << "|";
+	goto_XY(x + 85, y);
+	cout << sv->cccd;
 }

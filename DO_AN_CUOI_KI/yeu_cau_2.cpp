@@ -2,40 +2,50 @@
 
 void tao_hoc_ky() //LƯU Ý: PHẢI KIỂM TRA TẠO NĂM HỌC TRƯỚC THÌ MỚI ĐƯỢC TỚI HÀM TẠO HỌC KỲ
 {
+	system("cls");
 	int hk;
 	//Nhập học kì bạn muốn tạo, lưu ý là chỉ có học kì 1,2,3
+	goto_XY(34, 10);
+	cout << "Nhap hoc ki ban muon tao: ";
 	cin >> hk;
 	while (hk != 1 && hk != 2 && hk != 3)
 	{
-		//Nhập lại các kiểu
+		goto_XY(34, 9);
+		cout << "Hoc ki co the duoc tao chi la cac Hoc ki 1, 2, 3. Vui long tao lai.";
+		Xoa_dong(10);
+		goto_XY(34, 10);
+		cout << "Nhap hoc ki ban muon tao: ";
 		cin >> hk;
 	}
+	goto_XY(34, 11);
 	hoc_ki = nam_hoc_hien_tai + "/Hoc ki " + to_string(hk); //Mục đích là để lưu folder học kì vào folder năm học, tuy nhiên CÓ THỂ CHƯA ĐÚNG
 	//Kiểm tra xem học kì đã được khởi tạo chưa
 	if (Kiem_tra_folder(hoc_ki))
-		cout << "Hoc ki nay da duoc tạo.\n"; //Chỉnh đồ họa nha
-	else
 	{
-		if (Tao_folder(hoc_ki))
-			cout << "Hoc ki da duoc tao xong.\n"; //Chỉnh đồ họa nha
-		else
-			cout << "Co loi khi tao hoc ki nay. Vui long thu lai.\n"; //Chỉnh đồ họa nha
+		cout << "Hoc ki nay da duoc tao.\n"; //Chỉnh đồ họa nha
+		return;
 	}
 	string file_hoc_ki;
 	file_hoc_ki = nam_hoc_hien_tai + "/Thong tin hoc ki " + to_string(hk) + ".txt"; //Dùng để tạo ra file được lưu trong folder năm học, file này ghi thông tin năm học, ngày bắt đầu, ngày kết thúc
 	string ngay_bat_dau, ngay_ket_thuc;
-	//Nhập ngày bắt đầu học kì
+	cout << "Nhap ngay bat dau hoc ki (dd/mm/yyyy): ";
 	cin.ignore();
 	getline(cin, ngay_bat_dau);
 	//Nhập ngày kết thúc học kì
+	goto_XY(34, 12);
+	cout << "Nhap ngay ket thuc hoc ki (dd/mm/yyyy): ";
 	getline(cin, ngay_ket_thuc);
+	goto_XY(34, 13);
 	ofstream fout;
 	fout.open(file_hoc_ki);
 	fout << nam_hoc_hien_tai << "\n"
 		<< ngay_bat_dau << "\n"
 		<< ngay_ket_thuc << "\n";
 	fout.close();
-
+	if (Tao_folder(hoc_ki))
+		cout << "Hoc ki da duoc tao xong.\n"; //Chỉnh đồ họa nha
+	else
+		cout << "Co loi khi tao hoc ki nay. Vui long thu lai.\n"; //Chỉnh đồ họa nha
 	//Tạo một file csv lưu tất cả các thông tin của các khóa học
 	thong_tin_cac_khoa_hoc = hoc_ki + "/Thong tin cac khoa hoc.csv";
 	ofstream info_courses;
