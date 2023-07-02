@@ -220,5 +220,5 @@ void Lay_list_khoa_hoc(List_khoa_hoc& l)
 
 void xem_ds_khoa_hoc()
 {
-
+	//Huhu hôm nay mình phải ôn đại số tuyến tính
 }
