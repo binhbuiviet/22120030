@@ -191,34 +191,191 @@ void xem_dssv_trong_lop()
 	goto_XY(6, 3 + so_luong + 9);
 }
 
-void Lay_list_khoa_hoc(List_khoa_hoc& l)
+void Lay_list_khoa_hoc(List_khoa_hoc& l, ifstream& fin)
 {
-	ifstream fin;
-	fin.open("LOP/Danh sach cac lop.txt");
-	string ten_lop;
-	string ktra_nam_hoc = nam_hoc_hien_tai.substr(2, 2);
-	int knh = stoi(ktra_nam_hoc);
-	while (getline(fin, ten_lop, '\n'))
+	khoa_hoc* k = new khoa_hoc;
+	getline(fin, k->ma_mon_hoc, ',');
+	if (k->ma_mon_hoc == "")
+		return;
+	getline(fin, k->ten_khoa_hoc, ',');
+	getline(fin, k->ten_lop, ',');
+	getline(fin, k->ten_giang_vien, ',');
+	string so_tin_chi, sinh_vien_toi_da;
+	getline(fin, so_tin_chi, ',');
+	k->so_tin_chi = stoi(so_tin_chi);
+	getline(fin, sinh_vien_toi_da, ',');
+	k->sinh_vien_toi_da = stoi(sinh_vien_toi_da);
+	getline(fin, k->buoi_hoc, ',');
+	getline(fin, k->khung_gio, '\n');
+	k->pNext = nullptr;
+	Them_khoa_hoc_vao_duoi_danh_sach(l, k);
+}
+
+void bang_ds_khoa_hoc(List_khoa_hoc l)
+{
+	int x = 0;
+	int y = 8;
+	goto_XY(x + 2, y);
+	cout << "STT";
+	goto_XY(x + 6, y);
+	cout << "|";
+	goto_XY(x + 6, y + 1);
+	cout << "|";
+	goto_XY(x + 8, y);
+	cout << "Ma mon";
+	goto_XY(x + 8, y + 1);
+	cout << "hoc";
+	goto_XY(x + 17, y);
+	cout << "|";
+	goto_XY(x + 17, y + 1);
+	cout << "|";
+	goto_XY(x + 19, y);
+	cout << "Ten khoa hoc";
+	goto_XY(x + 45, y);
+	cout << "|";
+	goto_XY(x + 45, y + 1);
+	cout << "|";
+	goto_XY(x + 47, y);
+	cout << "Ten lop";
+	goto_XY(x + 58, y);
+	cout << "|";
+	goto_XY(x + 58, y + 1);
+	cout << "|";
+	goto_XY(x + 60, y);
+	cout << "Ten giang vien";
+	goto_XY(x + 87, y);
+	cout << "|";
+	goto_XY(x + 87, y + 1);
+	cout << "|";
+	goto_XY(x + 89, y);
+	cout << "So";
+	goto_XY(x + 89, y + 1);
+	cout << "TC";
+	goto_XY(x + 92, y);
+	cout << "|";
+	goto_XY(x + 92, y + 1);
+	cout << "|";
+	goto_XY(x + 94, y);
+	cout << "So SV";
+	goto_XY(x + 100, y);
+	cout << "|";
+	goto_XY(x + 100, y + 1);
+	cout << "|";
+	goto_XY(x + 102, y);
+	cout << "Buoi hoc";
+	goto_XY(x + 111, y);
+	cout << "|";
+	goto_XY(x + 111, y + 1);
+	cout << "|";
+	goto_XY(x + 113, y);
+	cout << "Khung";
+	goto_XY(x + 113, y + 1);
+	cout << "gio";
+	goto_XY(x + 19, y + 2);
+	khoa_hoc* k = l.pHead;
+	int stt = 0;
+	y++;
+	while (k != nullptr)
 	{
-		if (ten_lop == "")
-			break;
-		Lop_hoc* a;
-		Tao_node_lop(a, ten_lop);
-		string lop = ten_lop.substr(0, 2); //LƯU Ý CÁI NÀY CÓ THỂ ĐÃ SAI Ở NHỮNG FILE CPP TRƯỚC, CẦN SỬA LẠI
-		int l = stoi(lop);
-		if (l == knh)
-			Them_lop_vao_duoi_danh_sach(nam1, a);
-		else if (knh - l == 1)
-			Them_lop_vao_duoi_danh_sach(nam2, a);
-		else if (knh - l == 2)
-			Them_lop_vao_duoi_danh_sach(nam3, a);
-		else if (knh - l == 3)
-			Them_lop_vao_duoi_danh_sach(nam4, a);
+		stt++;
+		goto_XY(x + 2, y + stt);
+		cout << stt;
+		goto_XY(x + 6, y + stt);
+		cout << "|";
+		goto_XY(x + 8, y + stt);
+		cout << k->ma_mon_hoc;
+		goto_XY(x + 17, y + stt);
+		cout << "|";
+		goto_XY(x + 19, y + stt);
+		cout << k->ten_khoa_hoc;
+		goto_XY(x + 45, y + stt);
+		cout << "|";
+		goto_XY(x + 47, y + stt);
+		cout << k->ten_lop;
+		goto_XY(x + 58, y + stt);
+		cout << "|";
+		goto_XY(x + 60, y + stt);
+		cout << k->ten_giang_vien;
+		goto_XY(x + 87, y + stt);
+		cout << "|";
+		goto_XY(x + 89, y + stt);
+		cout << k->so_tin_chi;
+		goto_XY(x + 92, y + stt);
+		cout << "|";
+		goto_XY(x + 94, y + stt);
+		cout << k->sinh_vien_toi_da;
+		goto_XY(x + 100, y + stt);
+		cout << "|";
+		goto_XY(x + 102, y + stt);
+		cout << k->buoi_hoc;
+		goto_XY(x + 111, y + stt);
+		cout << "|";
+		goto_XY(x + 113, y + stt);
+		cout << k->khung_gio;
 	}
-	fin.close();
+	y--;
+	ve_hop(x, y, 146, stt + 1);
 }
 
 void xem_ds_khoa_hoc()
 {
-	//Huhu hôm nay mình phải ôn đại số tuyến tính
+	system("cls");
+	goto_XY(34, 5);
+	cout << "Chon nam hoc: ";
+	goto_XY(34, 6);
+	cout << "Hoc ki: (1/2/3) ";
+	string nam_hoc;
+	int hoc_ki;
+	goto_XY(48, 10);
+	getline(cin, nam_hoc);
+	goto_XY(50, 11);
+	cin >> hoc_ki;
+	string ten = nam_hoc + "/Hoc ki " + to_string(hoc_ki);
+	while (Kiem_tra_folder(ten)==false)
+	{
+		system("cls");
+		goto_XY(34, 9);
+		cout << "Nam hoc hoac hoc ki ban vua nhap chua duoc tao. Vui long nhap lai.";
+		goto_XY(34, 10);
+		cout << "Chon nam hoc: ";
+		goto_XY(34, 11);
+		cout << "Hoc ki: (1/2/3) ";
+		goto_XY(48, 10);
+		getline(cin, nam_hoc);
+		goto_XY(50, 11);
+		cin >> hoc_ki;
+		string ten = nam_hoc + "/Hoc ki " + to_string(hoc_ki);
+	}
+	ifstream fin;
+	fin.open(ten + "/Thong tin khoa hoc.txt");
+	string temp;
+	getline(fin, temp, '\n');
+	List_khoa_hoc l;
+	Tao_list_khoa_hoc(l);
+	while (fin.eof() != true)
+	{
+		Lay_list_khoa_hoc(l, fin);
+	}
+	fin.close();
+	bang_ds_khoa_hoc(l);
+}
+
+void xem_sv_trong_khoa_hoc()
+{
+	system("cls");
+	goto_XY(34, 5);
+	cout << "Chon nam hoc: ";
+	goto_XY(34, 6);
+	cout << "Hoc ki: (1/2/3) ";
+	goto_XY(34, 7);
+	cout << "Ten khoa hoc: ";
+	string nam_hoc, ten_khoa_hoc;
+	int hoc_ki;
+	goto_XY(48, 10);
+	getline(cin, nam_hoc);
+	goto_XY(50, 11);
+	cin >> hoc_ki;
+	goto_XY(48, 12);
+	getline(cin, ten_khoa_hoc);
+	string ten = nam_hoc + "/Hoc ki " + to_string(hoc_ki) + "/" + ten_khoa_hoc + "/Danh sach Sinh vien.csv";
 }
