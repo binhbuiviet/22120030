@@ -70,7 +70,7 @@ void Tao_lop();
 void Nhap_1_sinh_vien(sinh_vien*& sv, int x, int y, int stt);
 void Tao_danh_sach(List_sinh_vien& l);
 void Them_sv_vao_duoi_danh_sach(List_sinh_vien& l, sinh_vien* sv);
-void ve_hop_them_sv_vao_lop(int x, int y);
+void ve_cau_truc_them_sv_vao_lop(int x, int y);
 void Doc_sinh_vien_tu_file(ifstream& fin, sinh_vien*& sv);
 void Ghi_1_sinh_vien_vao_file(ofstream& fout, sinh_vien* n, int thu_tu);
 void Them_sv_vao_file();

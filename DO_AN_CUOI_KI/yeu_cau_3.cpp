@@ -173,7 +173,7 @@ void xem_dssv_trong_lop()
 
 	//Xuat danh sach sinh vien ra man hinh
 	system("cls");
-	ve_hop_them_sv_vao_lop(6, 5);
+	ve_cau_truc_them_sv_vao_lop(6, 5);
 	int x = 6;
 	int y = 4;
 	int w = 105;
@@ -378,4 +378,59 @@ void xem_sv_trong_khoa_hoc()
 	goto_XY(48, 12);
 	getline(cin, ten_khoa_hoc);
 	string ten = nam_hoc + "/Hoc ki " + to_string(hoc_ki) + "/" + ten_khoa_hoc + "/Danh sach Sinh vien.csv";
+
+	ifstream fin;
+	fin.open(ten);
+	while (!fin)
+	{
+		system("cls");
+		goto_XY(34, 3);
+		cout << "Nam hoc, hoac hoc ki, hoac khoa hoc ban vua nhap chua duoc khoi tao. Vui long nhap lai.";
+		goto_XY(34, 5);
+		cout << "Chon nam hoc: ";
+		goto_XY(34, 6);
+		cout << "Hoc ki: (1/2/3) ";
+		goto_XY(34, 7);
+		cout << "Ten khoa hoc: ";
+		string nam_hoc, ten_khoa_hoc;
+		int hoc_ki;
+		goto_XY(48, 10);
+		getline(cin, nam_hoc);
+		goto_XY(50, 11);
+		cin >> hoc_ki;
+		goto_XY(48, 12);
+		getline(cin, ten_khoa_hoc);
+		string ten = nam_hoc + "/Hoc ki " + to_string(hoc_ki) + "/" + ten_khoa_hoc + "/Danh sach Sinh vien.csv";
+		fin.open(ten);
+	}
+	string temp;
+	getline(fin, temp, '\n');
+	List_sinh_vien l;
+	Tao_danh_sach(l);
+	while (fin.eof() != true)
+	{
+		sinh_vien* sv = new sinh_vien;
+		Doc_sinh_vien_tu_file(fin, sv);
+		if (sv->mssv == "")
+			break;
+		Them_sv_vao_duoi_danh_sach(l, sv);
+	}
+	fin.close();
+
+	ve_cau_truc_them_sv_vao_lop(6, 9);
+	int x = 6;
+	int y = 9;
+	int w = 105;
+	int h = 3;
+	int stt = 0;
+	sinh_vien* a = l.pHead;
+	while (a != nullptr)
+	{
+		stt++;
+		Xuat_1_sv_cua_lop(a, x, y + h - 1, stt);
+		h++;
+		a = a->pNext;
+	}
+	ve_hop(x, y, w, stt + 2);
 }
+

@@ -180,7 +180,7 @@ void Them_sv_vao_duoi_danh_sach(List_sinh_vien& l, sinh_vien* sv)
 	}
 }
 
-void ve_hop_them_sv_vao_lop(int x, int y)
+void ve_cau_truc_them_sv_vao_lop(int x, int y)
 {
 	goto_XY(x + 2, y);
 	cout << "STT";
@@ -273,7 +273,7 @@ void Them_sv_vao_file()
 	int y = 4;
 	int w = 105;
 	int h = 3;
-	ve_hop_them_sv_vao_lop(x, y + 1);
+	ve_cau_truc_them_sv_vao_lop(x, y + 1);
 
 
 	List_sinh_vien l;
@@ -378,7 +378,7 @@ void Them_sinh_vien_vao_file_nhanh()
 	//In danh sách sinh viên ra màn hình, sau đó hỏi người dùng có muốn nhập danh sách dô lớp hay không?
 	//Xuat danh sach sinh vien ra man hinh
 	system("cls");
-	ve_hop_them_sv_vao_lop(6, 5);
+	ve_cau_truc_them_sv_vao_lop(6, 5);
 	int x = 6;
 	int y = 4;
 	int w = 105;
