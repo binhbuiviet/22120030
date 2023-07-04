@@ -433,4 +433,3 @@ void xem_sv_trong_khoa_hoc()
 	}
 	ve_hop(x, y, w, stt + 2);
 }
-

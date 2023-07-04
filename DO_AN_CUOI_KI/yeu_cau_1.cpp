@@ -284,6 +284,11 @@ void Them_sv_vao_file()
 		ve_hop(x, y, w, h);
 		sinh_vien* sv;
 		Nhap_1_sinh_vien(sv, x, y + h - 1, dem);
+		string folder_sv = "Sinh vien/" + sv->mssv;
+		if (Kiem_tra_folder(folder_sv) == false)
+		{
+			bool tao_foldersv = Tao_folder(folder_sv);
+		}
 		Them_sv_vao_duoi_danh_sach(l, sv);
 		if (dem != so_luong_sv)
 			Xoa_dong(y + h);
@@ -368,6 +373,11 @@ void Them_sinh_vien_vao_file_nhanh()
 		Doc_sinh_vien_tu_file(fin, sv);
 		if (sv->mssv == "")
 			break;
+		string folder_sv = "Sinh vien/" + sv->mssv;
+		if (Kiem_tra_folder(folder_sv) == false)
+		{
+			bool tao_foldersv = Tao_folder(folder_sv);
+		}
 		Them_sv_vao_duoi_danh_sach(dssv, sv);
 		so_luong++;
 		if (so_luong == so_luong_sv)

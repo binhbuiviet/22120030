@@ -429,7 +429,7 @@ void Them_mot_sinh_vien_vao_khoa_hoc()
 {
 	sinh_vien* sv;
 	cout << "Nhap thong tin sinh vien.\n";
-	Nhap_1_sinh_vien(sv);
+	Nhap_1_sinh_vien(sv); //Cần đổi lại cho đúng
 	string ten_khoa_hoc, ten_lop;
 	cout << "Nhap ten khoa hoc: ";
 	getline(cin, ten_khoa_hoc);
@@ -472,6 +472,7 @@ void Them_mot_sinh_vien_vao_khoa_hoc()
 		b = b->pNext;
 	}
 	fout.close();
+	//Cần thêm thông tin khóa học này vào file chứa của từng sinh viên
 }
 
 void Xoa_mot_sinh_vien_khoi_khoa_hoc()
