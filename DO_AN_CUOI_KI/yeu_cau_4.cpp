@@ -31,7 +31,7 @@ void in_sv_co_diem_vao_file(ofstream& fout, Diem_so_sv* d, int stt)
 		<< d->diem_qua_trinh << "\n";
 }
 
-void in_cau_truc_bang_diem(int x, int y)
+void ve_cau_truc_bang_diem(int x, int y)
 {
 	goto_XY(x + 2, y);
 	cout << "STT";
@@ -188,5 +188,197 @@ void Nhap_diem_khoa_hoc()
 	fout.close();
 	goto_XY(34, 15);
 	cout << "Nhap diem thanh cong.";
+}
+
+void xem_bang_diem_khoa_hoc()
+{
+	system("cls");
+	string tenkhoahoc, tenlop, link;
+	goto_XY(34, 10);
+	cout << "Nhap ten khoa hoc: ";
+	goto_XY(34, 11);
+	cout << "Nhap lop: ";
+	goto_XY(53, 10);
+	getline(cin, tenkhoahoc);
+	goto_XY(44, 11);
+	getline(cin, tenlop);
+	string ktra = hoc_ki + "/" + tenkhoahoc + " " + tenlop;
+	while (Kiem_tra_folder(ktra) == false)
+	{
+		Xoa_dong(10);
+		Xoa_dong(11);
+		goto_XY(34, 6);
+		cout << "Khoa hoc hoac lop ban nhap khong ton tai. Vui long nhap lai.";
+		goto_XY(34, 10);
+		cout << "Nhap ten khoa hoc: ";
+		goto_XY(34, 11);
+		cout << "Nhap lop: ";
+		goto_XY(53, 10);
+		getline(cin, tenkhoahoc);
+		goto_XY(44, 11);
+		getline(cin, tenlop);
+		string ktra = hoc_ki + "/" + tenkhoahoc + " " + tenlop;
+	}
+	Xoa_dong(6);
+	string file_diem;
+	file_diem = hoc_ki + "/" + tenkhoahoc + " " + tenlop + "/Danh sach sinh vien (Diem so).csv";
+	ifstream fin;
+	fin.open(file_diem);
+	if (!fin)
+	{
+		goto_XY(34, 12);
+		cout << "Khoa hoc cua lop hoc nay chua co diem. Vui long quay lai sau.";
+		fin.close();
+		return;
+	}
+	string temp;
+	getline(fin, temp, '\n');
+	List_diem_so_sv l;
+	Tao_danh_sach_sv_co_diem(l);
+	while (fin.eof() != true)
+	{
+		Diem_so_sv* d = new Diem_so_sv;
+		doc_sv_co_diem_tu_file(fin, d);
+		if (d->mssv == "")
+			break;
+		Them_sv_co_diem_vao_duoi_danh_sach(l, d);
+	}
+	fin.close();
+
+	system("cls");
+	int x = 6;
+	int y = 4;
+	int w = 105;
+	int h = 3;
+	ve_cau_truc_bang_diem(x, y);
+	int stt = 1;
+	Diem_so_sv* sv = l.pHead;
+	while (sv != nullptr)
+	{
+		in_1_sv_co_diem(x, y + stt, sv, stt);
+		sv = sv->pNext;
+		stt++;
+	}
+	ve_hop(x, y, 103, stt);
+}
+
+bool Kiem_tra_ton_tai_sv(List_diem_so_sv l, string mssv, Diem_so_sv*& d)
+{
+	d = l.pHead;
+	while (d != nullptr)
+	{
+		if (d->mssv == mssv)
+			return true;
+		d = d->pNext;
+	}
+	return false;
+}
+
+void cap_nhat_ket_qua()
+{
+	system("cls");
+	string tenkhoahoc, tenlop, link;
+	goto_XY(34, 10);
+	cout << "Nhap ten khoa hoc: ";
+	goto_XY(34, 11);
+	cout << "Nhap lop: ";
+	goto_XY(53, 10);
+	getline(cin, tenkhoahoc);
+	goto_XY(44, 11);
+	getline(cin, tenlop);
+	string ktra = hoc_ki + "/" + tenkhoahoc + " " + tenlop;
+	while (Kiem_tra_folder(ktra) == false)
+	{
+		Xoa_dong(10);
+		Xoa_dong(11);
+		goto_XY(34, 6);
+		cout << "Khoa hoc hoac lop ban nhap khong ton tai. Vui long nhap lai.";
+		goto_XY(34, 10);
+		cout << "Nhap ten khoa hoc: ";
+		goto_XY(34, 11);
+		cout << "Nhap lop: ";
+		goto_XY(53, 10);
+		getline(cin, tenkhoahoc);
+		goto_XY(44, 11);
+		getline(cin, tenlop);
+		string ktra = hoc_ki + "/" + tenkhoahoc + " " + tenlop;
+	}
+	Xoa_dong(6);
+	string file_diem;
+	file_diem = hoc_ki + "/" + tenkhoahoc + " " + tenlop + "/Danh sach sinh vien (Diem so).csv";
+	ifstream fin;
+	fin.open(file_diem);
+	if (!fin)
+	{
+		goto_XY(34, 12);
+		cout << "Khoa hoc cua lop hoc nay chua co diem. Vui long quay lai sau.";
+		fin.close();
+		return;
+	}
+	string temp;
+	getline(fin, temp, '\n');
+	List_diem_so_sv l;
+	Tao_danh_sach_sv_co_diem(l);
+	while (fin.eof() != true)
+	{
+		Diem_so_sv* d = new Diem_so_sv;
+		doc_sv_co_diem_tu_file(fin, d);
+		if (d->mssv == "")
+			break;
+		Them_sv_co_diem_vao_duoi_danh_sach(l, d);
+	}
+	fin.close();
+
+	string mssv_capnhat;
+	goto_XY(34, 12);
+	cout << "MSSV can thay doi diem: ";
+	getline(cin, mssv_capnhat);
+	Diem_so_sv* dsv;
+	while (Kiem_tra_ton_tai_sv(l, mssv_capnhat, dsv) == false)
+	{
+		Xoa_dong(13);
+		goto_XY(34, 6);
+		cout << "Sinh vien nay khong co trong danh sach. Vui long nhap lai.";
+		Xoa_dong(12);
+		goto_XY(34, 12);
+		cout << "MSSV can thay doi diem: ";
+		getline(cin, mssv_capnhat);
+	}
+	system("cls");
+	goto_XY(34, 10);
+	cout << "Cap nhat lai diem cho sinh vien " << mssv_capnhat;
+	goto_XY(34, 11);
+	cout << "Diem trung binh mon: ";
+	goto_XY(34, 12);
+	cout << "Diem cuoi ki: ";
+	goto_XY(34, 13);
+	cout << "Diem giua ki: ";
+	goto_XY(34, 14);
+	cout << "Diem thuong xuyen: ";
+	goto_XY(56, 11);
+	cin >> dsv->dtb_mon;
+	goto_XY(48, 12);
+	cin >> dsv->diem_cuoi_ki;
+	goto_XY(48, 13);
+	cin >> dsv->diem_giua_ki;
+	goto_XY(53, 14);
+	cin >> dsv->diem_qua_trinh;
+
+	string luu_file;
+	luu_file = hoc_ki + "/" + tenkhoahoc + " " + tenlop + "/Danh sach sinh vien (Diem so).csv";
+	ofstream fout;
+	fout.open(luu_file);
+	fout << "STT,MSSV,Ho va ten,DTB mon,Diem cuoi ki,Diem giua ki,Diem qua trinh\n";
+	int stt = 1;
+	Diem_so_sv* sv = l.pHead;
+	while (sv != nullptr)
+	{
+		in_sv_co_diem_vao_file(fout, sv, stt);
+		sv = sv->pNext;
+		stt++;
+	}  
+	fout.close();
+	goto_XY(34, 15);
+	cout << "Cap nhat diem thanh cong.";
 }
 
