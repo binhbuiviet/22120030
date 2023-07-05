@@ -279,15 +279,18 @@ void Them_sv_vao_file()
 	List_sinh_vien l;
 	Tao_danh_sach(l);
 	int dem = 1;
-	while (dem <= so_luong_sv)//Sau này sửa thành khi nhập xong thì nhấn xong
+	while (dem <= so_luong_sv)
 	{
 		ve_hop(x, y, w, h);
 		sinh_vien* sv;
 		Nhap_1_sinh_vien(sv, x, y + h - 1, dem);
 		string folder_sv = "Sinh vien/" + sv->mssv;
+		string folder_sv_namhoc = folder_sv + "/" + nam_hoc_hien_tai;
 		if (Kiem_tra_folder(folder_sv) == false)
 		{
 			bool tao_foldersv = Tao_folder(folder_sv);
+			bool tao_foldersv_namhoc = Tao_folder(folder_sv_namhoc);
+			//Viết tài khoản cho sinh viên đó nữa.
 		}
 		Them_sv_vao_duoi_danh_sach(l, sv);
 		if (dem != so_luong_sv)
@@ -374,9 +377,11 @@ void Them_sinh_vien_vao_file_nhanh()
 		if (sv->mssv == "")
 			break;
 		string folder_sv = "Sinh vien/" + sv->mssv;
+		string folder_sv_namhoc = folder_sv + "/" + nam_hoc_hien_tai;
 		if (Kiem_tra_folder(folder_sv) == false)
 		{
 			bool tao_foldersv = Tao_folder(folder_sv);
+			bool tao_foldersv_namhoc = Tao_folder(folder_sv_namhoc);
 		}
 		Them_sv_vao_duoi_danh_sach(dssv, sv);
 		so_luong++;

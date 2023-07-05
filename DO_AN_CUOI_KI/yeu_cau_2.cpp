@@ -28,10 +28,9 @@ void tao_hoc_ky() //LƯU Ý: PHẢI KIỂM TRA TẠO NĂM HỌC TRƯỚC THÌ M�
 	string file_hoc_ki;
 	file_hoc_ki = nam_hoc_hien_tai + "/Thong tin hoc ki " + to_string(hk) + ".txt"; //Dùng để tạo ra file được lưu trong folder năm học, file này ghi thông tin năm học, ngày bắt đầu, ngày kết thúc
 	string ngay_bat_dau, ngay_ket_thuc;
-	cout << "Nhap ngay bat dau hoc ki (dd/mm/yyyy): ";
+	cout << "Ngay bat dau hoc ki (dd/mm/yyyy): ";
 	cin.ignore();
 	getline(cin, ngay_bat_dau);
-	//Nhập ngày kết thúc học kì
 	goto_XY(34, 12);
 	cout << "Nhap ngay ket thuc hoc ki (dd/mm/yyyy): ";
 	getline(cin, ngay_ket_thuc);
@@ -43,9 +42,9 @@ void tao_hoc_ky() //LƯU Ý: PHẢI KIỂM TRA TẠO NĂM HỌC TRƯỚC THÌ M�
 		<< ngay_ket_thuc << "\n";
 	fout.close();
 	if (Tao_folder(hoc_ki))
-		cout << "Hoc ki da duoc tao xong.\n"; //Chỉnh đồ họa nha
+		cout << "Hoc ki da duoc tao xong.\n"; 
 	else
-		cout << "Co loi khi tao hoc ki nay. Vui long thu lai.\n"; //Chỉnh đồ họa nha
+		cout << "Co loi khi tao hoc ki nay. Vui long thu lai.\n"; 
 	//Tạo một file csv lưu tất cả các thông tin của các khóa học
 	thong_tin_cac_khoa_hoc = hoc_ki + "/Thong tin cac khoa hoc.csv";
 	ofstream info_courses;
@@ -68,71 +67,80 @@ void Nhap_khoa_hoc_vao_file(fstream& f, khoa_hoc*k)
 
 void tao_khoa_hoc()
 {
-	//Nhớ chỉnh đồ họa khúc này nha
+	system("cls");
+	if (hoc_ki == "")
+	{
+		goto_XY(34, 14);
+		cout << "Ban can tao hoc ki truoc.";
+		return;
+	}
 	khoa_hoc* k;
 	k = new khoa_hoc;
-	//Nhớ căn chỉnh đồ họa
+	goto_XY(34, 10);
 	cout << "Ma mon hoc: ";
 	getline(cin, k->ma_mon_hoc);
+	goto_XY(34, 11);
 	cout << "Ten khoa hoc: ";
 	getline(cin, k->ten_khoa_hoc);
+	goto_XY(34, 12);
 	cout << "Ten lop: ";
 	getline(cin, k->ten_lop);
+	goto_XY(34, 13);
 	cout << "Ten giang vien: ";
 	getline(cin, k->ten_giang_vien);
+	goto_XY(34, 14);
 	cout << "So tin chi: ";
 	cin >> k->so_tin_chi;
+	goto_XY(34, 15);
 	cout << "So luong sinh vien toi da: ";
 	cin >> k->sinh_vien_toi_da;
-	while (k->sinh_vien_toi_da > 50 || k->sinh_vien_toi_da < 1)
-	{
-		//Nhập lại
-		cin >> k->sinh_vien_toi_da;
-	}
 
 	int buoihoc;
-	cout << "Buoi hoc se la mot ngay tu thu hai den thu bay. Vui long nhap mot so nguyen tu 2 den 7.\n";
+	goto_XY(34, 17);
+	cout << "Buoi hoc se la mot ngay tu thu hai den thu bay. Vui long nhap mot so nguyen tu 2 den 7.";
+	goto_XY(34, 16);
 	cout << "Buoi hoc: Thu ";
 	cin >> buoihoc;
 	while (buoihoc < 2 || buoihoc>7)
 	{
-		//Nhập lại
+		goto_XY(34, 18);
+		cout << "Buoi hoc ban nhap khong chinh xac. Vui long nhap lai.";
+		Xoa_dong(16);
+		goto_XY(34, 16);
+		cout << "Buoi hoc: Thu ";
 		cin >> buoihoc;
 	}
 	k->buoi_hoc = "Thu " + to_string(buoihoc);
+	Xoa_dong(17);
+	Xoa_dong(18);
 
-	int khunggio;
-	cout << "Khung gio hoc co cac khung gio sau.\n"
-		<< "S1(07:30).\n"
-		<< "S2(09:30).\n"
-		<< "S3(13:30).\n"
-		<< "S4(15:30).\n"
-		<< "Vui long nhap mot so tu nhien tu 1 den 4.\n";
-	cout << "Khung gio hoc: S";
-	cin >> khunggio;
-	while (khunggio < 1 || khunggio>4)
-	{
-		//Nhập lại;
-		cin >> khunggio;
-	}
-	if (khunggio == 1)
-		k->khung_gio = "S1(07:30)";
-	else if (khunggio == 2)
-		k->khung_gio = "S2(09:30)";
-	else if (khunggio == 3)
-		k->khung_gio = "S3(13:30)";
-	else if (khunggio == 4)
-		k->khung_gio = "S4(15:30)";
+	goto_XY(34, 17);
+	cout << "Khung gio: ";
+	goto_XY(34, 18);
+	cout << "Khung gio hoc co cac khung gio sau.";
+	goto_XY(34, 19);
+	cout << "S1(07:30).";
+	goto_XY(34, 20);
+	cout << "S2(09:30).";
+	goto_XY(34, 21);
+	cout << "S3(13:30).";
+	goto_XY(34, 22);
+	cout << "S4(15:30).";
+
+	goto_XY(45, 17);
+	getline(cin, k->khung_gio);
 
 	k->pNext = nullptr;
-	//Cần kiểm tra học kì đã được tạo hay chưa
+	for (int i = 18; i <= 22; i++)
+		Xoa_dong(i);
 	string course;
 	//Tên khóa học này sẽ là tên của khóa học đã tạo sẵn + tên lớp
 	course = k->ten_khoa_hoc + " " + k->ten_lop;
 	string Khoa_hoc = hoc_ki + "/" + course;
 	if (Tao_folder(Khoa_hoc))
 	{
-		//Tạo xong
+		goto_XY(34, 18);
+		cout << "Khoa hoc da duoc tao xong.";
 	}
 	string INFO; //Đây là để tạo file txt chứa thông tin khóa học
 	INFO = Khoa_hoc + "/Thong tin khoa hoc.txt";
@@ -157,51 +165,83 @@ void tao_khoa_hoc()
 
 void Dang_danh_sach_sinh_vien_vao_khoa_hoc()
 {
-	ifstream fin;
-	string link;
-	cout << "\nNhap lien ket chua danh sach sinh vien ban muon them vao: ";
-	getline(cin, link);
-	fin.open(link);
-	while (!fin)
-	{
-		cout << "Lien ket ban vua nhap khong dan den danh sach phu hop. Vui long nhap lai.\n";
-		cout << "\nNhap lien ket chua danh sach sinh vien ban muon them vao: ";
-		getline(cin, link);
-		fin.open(link);
-	}
-	//Lưu ý, nên đưa file có trong tệp tin lớp thì càng tốt ^.^ hahaha
-	List_sinh_vien dssv;
-	Tao_danh_sach(dssv);
-	while (fin.eof() != true)
-	{
-		sinh_vien* sv = new sinh_vien;
-		string thu_tu;
-		getline(fin, thu_tu, ',');
-		if (thu_tu == "")
-			break;
-		Doc_sinh_vien_tu_file(fin, sv);
-		sv->pNext = nullptr;
-		Them_sv_vao_duoi_danh_sach(dssv, sv);
-	}
-	fin.close();
-
 	//Nhập tên khóa học muốn thêm sinh viên
 	string course;
+	goto_XY(34, 10);
 	cout << "Nhap ten khoa hoc: ";
 	getline(cin, course);
 	string lop;
+	goto_XY(34, 11);
 	cout << "Nhap ten lop: ";
 	getline(cin, lop);
 	course = hoc_ki + "/" + course + " " + lop;
 	while (Kiem_tra_folder(course) != true)
 	{
-		cout << "Khoa hoc nay chua duoc khoi tao. Vui long nhap khoa hoc khac.\n";
+		goto_XY(34, 9);
+		cout << "Khoa hoc nay chua duoc khoi tao. Vui long nhap khoa hoc khac.";
+		Xoa_dong(10);
+		Xoa_dong(11);
+		goto_XY(34, 10);
 		cout << "Nhap ten khoa hoc: ";
 		getline(cin, course);
+		goto_XY(34, 11);
 		cout << "Nhap ten lop: ";
 		getline(cin, lop);
 		course = hoc_ki + "/" + course + " " + lop;
 	}
+	string info_course = course + "/Thong tin khoa hoc.txt";
+	ifstream fin_info;
+	fin_info.open(info_course);
+	string Info_course;
+	getline(fin_info, Info_course, '\n');
+	fin_info.close();
+
+	ifstream fin;
+	string link;
+	goto_XY(34, 12);
+	cout << "\nNhap lien ket chua danh sach sinh vien ban muon them vao: ";
+	goto_XY(34, 13);
+	getline(cin, link);
+	fin.open(link);
+	while (!fin)
+	{
+		goto_XY(34, 9);
+		cout << "Lien ket ban vua nhap khong dan den danh sach phu hop. Vui long nhap lai.";
+		Xoa_dong(13);
+		goto_XY(34, 13);
+		getline(cin, link);
+		fin.open(link);
+	}
+	Xoa_dong(9);
+	List_sinh_vien dssv;
+	Tao_danh_sach(dssv);
+	while (fin.eof() != true)
+	{
+		sinh_vien* sv = new sinh_vien;
+		Doc_sinh_vien_tu_file(fin, sv);
+		if (sv->mssv == "")
+			break;
+		sv->pNext = nullptr;
+		Them_sv_vao_duoi_danh_sach(dssv, sv);
+		string mssv_namhoc = "Sinh vien/" + sv->mssv + "/" + nam_hoc_hien_tai;
+		if (Kiem_tra_folder(mssv_namhoc) == false)
+			bool tao_folder1 = Tao_folder(mssv_namhoc);
+		string mssv_hocki= "Sinh vien/" + sv->mssv + "/" + hoc_ki;
+		string mssv_hocki_khoahoc = mssv_hocki + "/Thong tin khoa hoc.csv";
+		if (Kiem_tra_folder(mssv_hocki) == false)
+		{
+			bool tao_folder2 = Tao_folder(mssv_hocki);
+			ofstream fout_inf;
+			fout_inf.open(mssv_hocki_khoahoc);
+			fout_inf << "Ma mon hoc,Ten khoa hoc,Ten lop,Ten giang vien,So tin chi,So luong SV toi da,Buoi hoc,Khung gio\n";
+			fout_inf.close();
+		}
+		fstream foutsv;
+		foutsv.open(mssv_hocki_khoahoc, ios_base::app);
+		foutsv << Info_course << "\n";
+		foutsv.close();
+	}
+	fin.close();
 
 	string ds = course + "/Danh sach Sinh vien.csv";
 	int dem = 0;
@@ -221,6 +261,8 @@ void Dang_danh_sach_sinh_vien_vao_khoa_hoc()
 		n = n->pNext;
 	}
 	fout.close();
+	goto_XY(34, 14);
+	cout << "Nhap danh sach thanh cong.";
 }
 
 void Lay_list_khoa_hoc(ifstream& fin, List_khoa_hoc& l)
@@ -243,111 +285,64 @@ void Lay_list_khoa_hoc(ifstream& fin, List_khoa_hoc& l)
 	Them_khoa_hoc_vao_duoi_danh_sach(l, k);
 }
 
-void Menu_cap_nhat_khoa_hoc(khoa_hoc*& a)
+void Menu_cap_nhat_khoa_hoc(khoa_hoc*& k)
 {
-	int kiem_tra = 1;
-	while (kiem_tra == 1)
+	system("cls");
+	goto_XY(34, 10);
+	cout << "Ma mon hoc: ";
+	getline(cin, k->ma_mon_hoc);
+	goto_XY(34, 11);
+	cout << "Ten khoa hoc: ";
+	getline(cin, k->ten_khoa_hoc);
+	goto_XY(34, 12);
+	cout << "Ten lop: ";
+	getline(cin, k->ten_lop);
+	goto_XY(34, 13);
+	cout << "Ten giang vien: ";
+	getline(cin, k->ten_giang_vien);
+	goto_XY(34, 14);
+	cout << "So tin chi: ";
+	cin >> k->so_tin_chi;
+	goto_XY(34, 15);
+	cout << "So luong sinh vien toi da: ";
+	cin >> k->sinh_vien_toi_da;
+
+	int buoihoc;
+	goto_XY(34, 17);
+	cout << "Buoi hoc se la mot ngay tu thu hai den thu bay. Vui long nhap mot so nguyen tu 2 den 7.";
+	goto_XY(34, 16);
+	cout << "Buoi hoc: Thu ";
+	cin >> buoihoc;
+	while (buoihoc < 2 || buoihoc>7)
 	{
-		system("cls"); //Đổi sang trang màn hình mới
-		//MENU hỏi người dùng muốn cập nhật thông tin gì của khóa học
-		cout << "Ban muon doi thong tin nao cua khoa hoc.\n";
-		cout << "1. Ma mon hoc.\n"
-			<< "2. Ten khoa hoc.\n"
-			<< "3. Ten lop.\n"
-			<< "4. Ten giang vien.\n"
-			<< "5. So tin chi.\n"
-			<< "6. So luong sinh vien toi da.\n"
-			<< "7. Buoi hoc.\n"
-			<< "8. Khung gio.\n";
-		int choice;
-		cout << "Moi ban chon: ";
-		cin >> choice;
-		while (choice < 1 || choice>8)
-		{
-			cout << "Lua chon khong hop le. Vui long nhap lai.\n";
-			cout << "Moi ban chon: ";
-			cin >> choice;
-		}
-		cin.ignore();
-		system("cls");
-		switch (choice)
-		{
-		case 1:
-			cout << "Nhap lai ma mon hoc: ";
-			getline(cin, a->ma_mon_hoc);
-			break;
-		case 2:
-			cout << "Nhap lai ten khoa hoc: ";
-			getline(cin, a->ten_khoa_hoc);
-			break;
-		case 3:
-			cout << "Nhap lai ten lop: ";
-			getline(cin, a->ten_lop);
-			break;
-		case 4:
-			cout << "Nhap lai ten giang vien: ";
-			getline(cin, a->ten_giang_vien);
-			break;
-		case 5:
-			cout << "Nhap lai so tin chi: ";
-			cin >> a->so_tin_chi;
-			break;
-		case 6:
-			cout << "Nhap lai so luong sinh vien toi da: ";
-			cin >> a->sinh_vien_toi_da;
-			break;
-		case 7:
-			int buoihoc;
-			cout << "Nhap lai buoi hoc.\n";
-			cout << "Buoi hoc se la mot ngay tu thu hai den thu bay. Vui long nhap mot so nguyen tu 2 den 7.\n";
-			cout << "Buoi hoc: Thu ";
-			cin >> buoihoc;
-			while (buoihoc < 2 || buoihoc>7)
-			{
-				//Nhập lại
-				cin >> buoihoc;
-			}
-			a->buoi_hoc = "Thu " + to_string(buoihoc);
-			break;
-		case 8:
-			int khunggio;
-			cout << "Khung gio hoc co cac khung gio sau.\n"
-				<< "S1(07:30).\n"
-				<< "S2(09:30).\n"
-				<< "S3(13:30).\n"
-				<< "S4(15:30).\n"
-				<< "Vui long nhap mot so tu nhien tu 1 den 4.\n";
-			cout << "Nhap lai khung gio hoc: S";
-			cin >> khunggio;
-			while (khunggio < 1 || khunggio>4)
-			{
-				//Nhập lại;
-				cin >> khunggio;
-			}
-			if (khunggio == 1)
-				a->khung_gio = "S1(07:30)";
-			else if (khunggio == 2)
-				a->khung_gio = "S2(09:30)";
-			else if (khunggio == 3)
-				a->khung_gio = "S3(13:30)";
-			else if (khunggio == 4)
-				a->khung_gio = "S4(15:30)";
-			break;
-		}
-		cout << "Nhan 1: Ban muon tiep tuc thay doi khoa hoc nay.\n";
-		cout << "Nhan 2: Thay doi hoan tat.\n";
-		cout << "Moi ban chon: ";
-		cin >> kiem_tra;
-		while (kiem_tra != 1 && kiem_tra != 2)
-		{
-			system("cls");
-			cout << "Moi ban nhap lai.\n";
-			cout << "Nhan 1: Ban muon tiep tuc thay doi khoa hoc nay.\n";
-			cout << "Nhan 2: Thay doi hoan tat.\n";
-			cout << "Moi ban chon: ";
-			cin >> kiem_tra;
-		}
+		goto_XY(34, 18);
+		cout << "Buoi hoc ban nhap khong chinh xac. Vui long nhap lai.";
+		Xoa_dong(16);
+		goto_XY(34, 16);
+		cout << "Buoi hoc: Thu ";
+		cin >> buoihoc;
 	}
+	k->buoi_hoc = "Thu " + to_string(buoihoc);
+	Xoa_dong(17);
+	Xoa_dong(18);
+
+	goto_XY(34, 17);
+	cout << "Khung gio: ";
+	goto_XY(34, 18);
+	cout << "Khung gio hoc co cac khung gio sau.";
+	goto_XY(34, 19);
+	cout << "S1(07:30).";
+	goto_XY(34, 20);
+	cout << "S2(09:30).";
+	goto_XY(34, 21);
+	cout << "S3(13:30).";
+	goto_XY(34, 22);
+	cout << "S4(15:30).";
+
+	goto_XY(45, 17);
+	getline(cin, k->khung_gio);
+	for (int i = 18; i <= 22; i++)
+		Xoa_dong(i);
 }
 
 //Việc cập nhật tên khóa học có thể phải đổi luôn tên file khóa học, do đó cần có 1 hàm đổi tên
@@ -380,9 +375,10 @@ void Cap_nhat_khoa_hoc()
 
 	//Hỏi xem người dùng muốn cập nhật thông tin của khóa học nào
 	string ten, lop, course;
-	int kiem_tra = 0;
+	goto_XY(34, 10);
 	cout << "Nhap ten khoa hoc ban muon cap nhat: ";
 	getline(cin, ten);
+	goto_XY(34, 11);
 	cout << "Nhap lop: ";
 	getline(cin, lop);
 	khoa_hoc* a = l.pHead;
@@ -413,34 +409,43 @@ void Cap_nhat_khoa_hoc()
 	info_courses.close();
 
 	//Kiểm tra xem folder của khóa học đó có cần đổi tên hay không
-	if ((a->ten_khoa_hoc != ten || a->ten_lop != lop)&&a!=nullptr)
+	if ((a->ten_khoa_hoc != ten || a->ten_lop != lop) && a != nullptr)
 	{
 		ten = hoc_ki + "/" + ten + " " + lop;
 		string ten_moi = hoc_ki + "/" + a->ten_khoa_hoc + " " + a->ten_lop;
-		if (Doi_ten_file(ten, ten_moi))
-		{
-			//Đổi tên folder thành công
-			
-		}
+		bool doitenfile = Doi_ten_file(ten, ten_moi);
 	}
+	goto_XY(34, 18);
+	cout << "Cap nhat thong tin khoa hoc thanh cong.";
 }
 
 void Them_mot_sinh_vien_vao_khoa_hoc()
 {
+	system("cls");
+	int x = 6;
+	int y = 4;
+	int w = 105;
+	int h = 3;
+	ve_cau_truc_them_sv_vao_lop(x, y + 1);
+	ve_hop(x, y, w, h);
 	sinh_vien* sv;
-	cout << "Nhap thong tin sinh vien.\n";
-	Nhap_1_sinh_vien(sv); //Cần đổi lại cho đúng
-	string ten_khoa_hoc, ten_lop;
+	Nhap_1_sinh_vien(sv, x, y + h - 1, 1);
+	string ten_khoa_hoc, ten_lop, course;
+	goto_XY(34, 10);
 	cout << "Nhap ten khoa hoc: ";
 	getline(cin, ten_khoa_hoc);
+	goto_XY(34, 11);
 	cout << "Nhap ten lop: ";
 	getline(cin, ten_lop);
+	string course = hoc_ki + "/" + ten_khoa_hoc + " " + ten_lop;
 	ten_khoa_hoc = hoc_ki + "/" + ten_khoa_hoc + " " + ten_lop + "/Danh sach Sinh vien.csv";
 	ifstream fin;
 	fin.open(ten_khoa_hoc);
 	if (!fin)
 	{
+		goto_XY(34, 12);
 		cout << "Khoa hoc nay chua duoc tao.\n";
+		fin.close();
 		return;
 	}
 	string temp;
@@ -455,11 +460,41 @@ void Them_mot_sinh_vien_vao_khoa_hoc()
 		Doc_sinh_vien_tu_file(fin, sv1);
 		if (sv1->mssv == "")
 			break;
+		if (sv1->mssv == sv->mssv)
+		{
+			goto_XY(34, 12);
+			cout << "Sinh vien nay da co trong lop.";
+			fin.close();
+			return;
+		}
 		Them_sv_vao_duoi_danh_sach(l, sv1);
 	}
 	fin.close();
 	Them_sv_vao_duoi_danh_sach(l, sv);
-	//Hỏi lại người dùng có thực sự muốn thêm sinh viên này vào không (Sẽ làm sau)
+	string info_course = course + "/Thong tin khoa hoc.txt";
+	ifstream fin_info;
+	fin_info.open(info_course);
+	string Info_course;
+	getline(fin_info, Info_course, '\n');
+	fin_info.close();
+	string mssv_namhoc = "Sinh vien/" + sv->mssv + "/" + nam_hoc_hien_tai;
+	if (Kiem_tra_folder(mssv_namhoc) == false)
+		bool tao_folder1 = Tao_folder(mssv_namhoc);
+	string mssv_hocki = "Sinh vien/" + sv->mssv + "/" + hoc_ki;
+	string mssv_hocki_khoahoc = mssv_hocki + "/Thong tin khoa hoc.csv";
+	if (Kiem_tra_folder(mssv_hocki) == false)
+	{
+		bool tao_folder2 = Tao_folder(mssv_hocki);
+		ofstream fout_inf;
+		fout_inf.open(mssv_hocki_khoahoc);
+		fout_inf << "Ma mon hoc,Ten khoa hoc,Ten lop,Ten giang vien,So tin chi,So luong SV toi da,Buoi hoc,Khung gio\n";
+		fout_inf.close();
+	}
+	fstream foutsv;
+	foutsv.open(mssv_hocki_khoahoc, ios_base::app);
+	foutsv << Info_course << "\n";
+	foutsv.close();
+	
 	ofstream fout;
 	fout.open(ten_khoa_hoc);
 	fout << temp << "\n";
@@ -472,18 +507,23 @@ void Them_mot_sinh_vien_vao_khoa_hoc()
 		b = b->pNext;
 	}
 	fout.close();
-	//Cần thêm thông tin khóa học này vào file chứa của từng sinh viên
+	goto_XY(34, 12);
+	cout << "Da them sinh vien thanh cong.";
 }
+
 
 void Xoa_mot_sinh_vien_khoi_khoa_hoc()
 {
-
+	system("cls");
 	string mssv;
+	goto_XY(34, 10);
 	cout << "Nhap MSSV ban muon xoa: ";
 	getline(cin, mssv);
 	string ten_khoa_hoc, ten_lop;
+	goto_XY(34, 11);
 	cout << "Nhap ten khoa hoc: ";
 	getline(cin, ten_khoa_hoc);
+	goto_XY(34, 12);
 	cout << "Nhap ten lop: ";
 	getline(cin, ten_lop);
 	ten_khoa_hoc = hoc_ki + "/" + ten_khoa_hoc + " " + ten_lop + "/Danh sach Sinh vien.csv";
@@ -491,7 +531,9 @@ void Xoa_mot_sinh_vien_khoi_khoa_hoc()
 	fin.open(ten_khoa_hoc);
 	if (!fin)
 	{
+		goto_XY(34, 13);
 		cout << "Khoa hoc nay chua duoc tao.\n";
+		fin.close();
 		return;
 	}
 	string temp;
