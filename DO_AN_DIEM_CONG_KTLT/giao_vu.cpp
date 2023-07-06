@@ -661,7 +661,7 @@ void Them_mot_sinh_vien_vao_khoa_hoc()
 	goto_XY(34, 11);
 	cout << "Nhap ten lop: ";
 	getline(cin, ten_lop);
-	string course = hoc_ki + "/" + ten_khoa_hoc + " " + ten_lop;
+	course = hoc_ki + "/" + ten_khoa_hoc + " " + ten_lop;
 	ten_khoa_hoc = hoc_ki + "/" + ten_khoa_hoc + " " + ten_lop + "/Danh sach Sinh vien.csv";
 	ifstream fin;
 	fin.open(ten_khoa_hoc);

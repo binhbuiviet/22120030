@@ -1,0 +1,19 @@
+﻿  chung.cpp
+  dang_nhap.cpp
+  do_hoa.cpp
+  giao_vu.cpp
+  main.cpp
+  Generating Code...
+dang_nhap.obj : error LNK2005: "struct Thoi_gian_hien_tai tght" (?tght@@3UThoi_gian_hien_tai@@A) already defined in chung.obj
+dang_nhap.obj : error LNK2005: "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > nam_hoc_hien_tai" (?nam_hoc_hien_tai@@3V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@A) already defined in chung.obj
+dang_nhap.obj : error LNK2005: "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > hoc_ki" (?hoc_ki@@3V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@A) already defined in chung.obj
+dang_nhap.obj : error LNK2005: "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > thong_tin_cac_khoa_hoc" (?thong_tin_cac_khoa_hoc@@3V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@A) already defined in chung.obj
+giao_vu.obj : error LNK2005: "struct Thoi_gian_hien_tai tght" (?tght@@3UThoi_gian_hien_tai@@A) already defined in chung.obj
+giao_vu.obj : error LNK2005: "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > nam_hoc_hien_tai" (?nam_hoc_hien_tai@@3V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@A) already defined in chung.obj
+giao_vu.obj : error LNK2005: "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > hoc_ki" (?hoc_ki@@3V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@A) already defined in chung.obj
+giao_vu.obj : error LNK2005: "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > thong_tin_cac_khoa_hoc" (?thong_tin_cac_khoa_hoc@@3V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@A) already defined in chung.obj
+main.obj : error LNK2005: "struct Thoi_gian_hien_tai tght" (?tght@@3UThoi_gian_hien_tai@@A) already defined in chung.obj
+main.obj : error LNK2005: "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > nam_hoc_hien_tai" (?nam_hoc_hien_tai@@3V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@A) already defined in chung.obj
+main.obj : error LNK2005: "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > hoc_ki" (?hoc_ki@@3V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@A) already defined in chung.obj
+main.obj : error LNK2005: "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > thong_tin_cac_khoa_hoc" (?thong_tin_cac_khoa_hoc@@3V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@A) already defined in chung.obj
+C:\Users\admins\source\repos\DO_AN_DIEM_CONG_KTLT\x64\Debug\DO_AN_DIEM_CONG_KTLT.exe : fatal error LNK1169: one or more multiply defined symbols found

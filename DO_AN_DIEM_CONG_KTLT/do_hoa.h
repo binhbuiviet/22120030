@@ -7,6 +7,7 @@
 #include <windows.h>
 #include <cstdio>
 #include <sstream>
+#pragma once
 
 using namespace std;
 

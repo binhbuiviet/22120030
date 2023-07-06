@@ -1,5 +1,5 @@
-#pragma once
 #include "chung.h"
+#pragma once
 
 void Tao_mot_nam_hoc();
 void Tao_lop();

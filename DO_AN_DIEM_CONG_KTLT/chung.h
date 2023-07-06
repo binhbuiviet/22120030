@@ -1,5 +1,5 @@
-﻿#pragma once
-#include "do_hoa.h"
+﻿#include "do_hoa.h"
+#pragma once
 
 struct Thoi_gian_hien_tai
 {
@@ -75,9 +75,9 @@ struct List_diem_so_sv
 };
 
 Thoi_gian_hien_tai tght;
-string nam_hoc_hien_tai;
+string nam_hoc_hien_tai = "";
 string hoc_ki = ""; //Mục đích của string này là để tạo folder học kì, gán nó trong folder năm học đã tạo trước đó
-string thong_tin_cac_khoa_hoc;
+string thong_tin_cac_khoa_hoc = "";
 
 void Lay_thoi_gian_hien_tai();
 bool Kiem_tra_folder(string& ten_folder);
