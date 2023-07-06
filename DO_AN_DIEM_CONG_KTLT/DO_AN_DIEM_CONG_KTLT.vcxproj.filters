@@ -15,42 +15,30 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="dang_nhap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="yeu_cau_1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="yeu_cau_2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="do_hoa.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="yeu_cau_3.h">
+    <ClInclude Include="chung.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="yeu_cau_4.h">
+    <ClInclude Include="giao_vu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dang_nhap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dang_nhap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="yeu_cau_1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="yeu_cau_2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="do_hoa.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="yeu_cau_3.cpp">
+    <ClCompile Include="chung.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="yeu_cau_4.cpp">
+    <ClCompile Include="giao_vu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dang_nhap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

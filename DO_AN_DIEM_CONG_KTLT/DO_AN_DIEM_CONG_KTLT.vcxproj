@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{879400b4-2c62-4220-a85d-d791cf8ca8dc}</ProjectGuid>
-    <RootNamespace>DOANCUOIKI</RootNamespace>
+    <ProjectGuid>{5c81f61a-8978-4182-9f0d-320c5ca6e16c}</ProjectGuid>
+    <RootNamespace>DOANDIEMCONGKTLT</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -74,7 +74,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -102,7 +102,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -127,20 +127,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="chung.h" />
     <ClInclude Include="dang_nhap.h" />
     <ClInclude Include="do_hoa.h" />
-    <ClInclude Include="yeu_cau_1.h" />
-    <ClInclude Include="yeu_cau_2.h" />
-    <ClInclude Include="yeu_cau_3.h" />
-    <ClInclude Include="yeu_cau_4.h" />
+    <ClInclude Include="giao_vu.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="chung.cpp" />
     <ClCompile Include="dang_nhap.cpp" />
     <ClCompile Include="do_hoa.cpp" />
-    <ClCompile Include="yeu_cau_1.cpp" />
-    <ClCompile Include="yeu_cau_2.cpp" />
-    <ClCompile Include="yeu_cau_3.cpp" />
-    <ClCompile Include="yeu_cau_4.cpp" />
+    <ClCompile Include="giao_vu.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
