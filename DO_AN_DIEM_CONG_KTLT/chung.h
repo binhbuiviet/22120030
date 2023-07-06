@@ -74,10 +74,10 @@ struct List_diem_so_sv
 	Diem_so_sv* pTail;
 };
 
-Thoi_gian_hien_tai tght;
-string nam_hoc_hien_tai = "";
-string hoc_ki = ""; //Mục đích của string này là để tạo folder học kì, gán nó trong folder năm học đã tạo trước đó
-string thong_tin_cac_khoa_hoc = "";
+extern Thoi_gian_hien_tai tght;
+extern string nam_hoc_hien_tai ;
+extern string hoc_ki ; //Mục đích của string này là để tạo folder học kì, gán nó trong folder năm học đã tạo trước đó
+extern string thong_tin_cac_khoa_hoc ;
 
 void Lay_thoi_gian_hien_tai();
 bool Kiem_tra_folder(string& ten_folder);

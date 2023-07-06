@@ -95,7 +95,9 @@ void Them_sv_vao_file()
 	int h = 3;
 	ve_cau_truc_them_sv_vao_lop(x, y + 1);
 
-
+	string sinhv = "Sinh vien";
+	if (Kiem_tra_folder(sinhv) == false)
+		bool tao_sinhv = Tao_folder(sinhv);
 	List_sinh_vien l;
 	Tao_danh_sach(l);
 	int dem = 1;
@@ -153,6 +155,8 @@ void Them_sinh_vien_vao_file_nhanh()
 	{
 		Xoa_dong(10);
 		Xoa_dong(11);
+		goto_XY(34, 9);
+		cout << "Lop nay chua duoc khoi tao.";
 		goto_XY(34, 10);
 		cout << "Nhap lai lop muon them sinh vien: ";
 		getline(cin, lop);
@@ -164,6 +168,7 @@ void Them_sinh_vien_vao_file_nhanh()
 		check.open(lop);
 	}
 	check.close();
+	Xoa_dong(9);
 
 	goto_XY(34, 12);
 	ifstream fin;
@@ -178,12 +183,15 @@ void Them_sinh_vien_vao_file_nhanh()
 		cout << "Lien ket ban vua nhap khong dan den danh sach phu hop. Vui long nhap lai.";
 		Xoa_dong(12);
 		goto_XY(34, 12);
-		cout << "\nNhap lien ket chua danh sach sinh vien ban muon them vao:";
+		cout << "Nhap lien ket chua danh sach sinh vien ban muon them vao:";
 		goto_XY(34, 13);
 		getline(cin, link);
 		fin.open(link);
 	}
 
+	string sinhv = "Sinh vien";
+	if (Kiem_tra_folder(sinhv) == false)
+		bool tao_sinhv = Tao_folder(sinhv);
 	List_sinh_vien dssv;
 	Tao_danh_sach(dssv);
 	string temp;
@@ -366,6 +374,7 @@ void tao_khoa_hoc()
 	k->buoi_hoc = "Thu " + to_string(buoihoc);
 	Xoa_dong(17);
 	Xoa_dong(18);
+	cin.ignore();
 
 	goto_XY(34, 17);
 	cout << "Khung gio: ";
@@ -396,7 +405,7 @@ void tao_khoa_hoc()
 		cout << "Khoa hoc da duoc tao xong.";
 	}
 	string INFO; //Đây là để tạo file txt chứa thông tin khóa học
-	INFO = Khoa_hoc + "/Thong tin khoa hoc.txt";
+	INFO = Khoa_hoc + "/Thong tin khoa hoc.csv";
 	fstream nhap_info;
 	nhap_info.open(INFO, ios_base::out);
 	Nhap_khoa_hoc_vao_file(nhap_info, k);
@@ -442,7 +451,7 @@ void Dang_danh_sach_sinh_vien_vao_khoa_hoc()
 		getline(cin, lop);
 		course = hoc_ki + "/" + course + " " + lop;
 	}
-	string info_course = course + "/Thong tin khoa hoc.txt";
+	string info_course = course + "/Thong tin khoa hoc.csv";
 	ifstream fin_info;
 	fin_info.open(info_course);
 	string Info_course;
@@ -998,11 +1007,12 @@ void xem_ds_khoa_hoc()
 	cout << "Hoc ki: (1/2/3) ";
 	string nam_hoc;
 	int hoc_ki;
-	goto_XY(48, 10);
+	goto_XY(48, 5);
 	getline(cin, nam_hoc);
-	goto_XY(50, 11);
+	goto_XY(50, 6);
 	cin >> hoc_ki;
 	string ten = nam_hoc + "/Hoc ki " + to_string(hoc_ki);
+	cin.ignore();
 	while (Kiem_tra_folder(ten) == false)
 	{
 		system("cls");
@@ -1016,10 +1026,11 @@ void xem_ds_khoa_hoc()
 		getline(cin, nam_hoc);
 		goto_XY(50, 11);
 		cin >> hoc_ki;
+		cin.ignore();
 		string ten = nam_hoc + "/Hoc ki " + to_string(hoc_ki);
 	}
 	ifstream fin;
-	fin.open(ten + "/Thong tin khoa hoc.txt");
+	fin.open(ten + "/Thong tin khoa hoc.csv");
 	string temp;
 	getline(fin, temp, '\n');
 	List_khoa_hoc l;
@@ -1029,6 +1040,7 @@ void xem_ds_khoa_hoc()
 		Lay_list_khoa_hoc(fin, l);
 	}
 	fin.close();
+	system("cls");
 	bang_ds_khoa_hoc(l);
 }
 

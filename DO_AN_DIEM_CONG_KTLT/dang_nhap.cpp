@@ -92,9 +92,11 @@ void Dang_nhap_tai_khoan_GV()
 	{
 		goto_XY(34, 12);
 		cout << "Email hoac mat khau khong chinh xac. Vui long thu lai.";
-		system("pause");
+		goto_XY(34, 13);
+		cout << "Nhan bat ki phim nao de quay lai.";
+		char g;
+		g = _getch();
 	}
-	system("pause");
 }
 
 void Giao_dien_giao_vu()
@@ -103,7 +105,7 @@ void Giao_dien_giao_vu()
 	goto_XY(15, 8);
 	cout << "1. Xem thong tin.";
 	goto_XY(15, 9);
-	cout << "2.Doi mat khau.";
+	cout << "2. Doi mat khau.";
 	goto_XY(15, 10);
 	cout << "3. Tao nam hoc moi.";
 	goto_XY(15, 11);
@@ -114,7 +116,7 @@ void Giao_dien_giao_vu()
 	cout << "6. Xem cac thong tin giao vu.";
 	goto_XY(15, 14);
 	cout << "7. Quan li ket qua hoc tap.";
-	goto_XY(15, 25);
+	goto_XY(15, 15);
 	cout << "8. DANG XUAT.";
 }
 
@@ -136,23 +138,24 @@ void Thao_tac_voi_cac_lop()
 		goto_XY(15, 12);
 		cout << "Moi ban chon: ";
 		cin >> chon;
+		cin.ignore();
 		switch (chon)
 		{
 		case 1:
 			Tao_lop();
-			goto_XY(34, 12);
+			goto_XY(34, 14);
 			cout << "Nhan bat ki phim nao de tiep tuc.";
 			g = _getch();
 			break;
 		case 2:
 			Them_sv_vao_file();
-			goto_XY(34, 42);
+			goto_XY(34, 2);
 			cout << "Nhan bat ki phim nao de tiep tuc.";
 			g = _getch();
 			break;
 		case 3:
 			Them_sinh_vien_vao_file_nhanh();
-			goto_XY(34, 42);
+			goto_XY(34, 2);
 			cout << "Nhan bat ki phim nao de tiep tuc.";
 			g = _getch();
 			break;
@@ -197,6 +200,7 @@ void Thao_tac_voi_cac_khoa_hoc()
 		goto_XY(15, 17);
 		cout << "Moi ban chon: ";
 		cin >> chon;
+		cin.ignore();
 		switch (chon)
 		{
 		case 1:
@@ -207,13 +211,13 @@ void Thao_tac_voi_cac_khoa_hoc()
 			break;
 		case 2:
 			tao_khoa_hoc();
-			goto_XY(34, 42);
+			goto_XY(34, 2);
 			cout << "Nhan bat ki phim nao de tiep tuc.";
 			g = _getch();
 			break;
 		case 3:
 			Dang_danh_sach_sinh_vien_vao_khoa_hoc();
-			goto_XY(34, 42);
+			goto_XY(34, 2);
 			cout << "Nhan bat ki phim nao de tiep tuc.";
 			g = _getch();
 			break;
@@ -231,19 +235,19 @@ void Thao_tac_voi_cac_khoa_hoc()
 			break;
 		case 6:
 			Them_mot_sinh_vien_vao_khoa_hoc();
-			goto_XY(34, 42);
+			goto_XY(34, 2);
 			cout << "Nhan bat ki phim nao de tiep tuc.";
 			g = _getch();
 			break;
 		case 7:
 			Xoa_mot_sinh_vien_khoi_khoa_hoc();
-			goto_XY(34, 42);
+			goto_XY(34, 2);
 			cout << "Nhan bat ki phim nao de tiep tuc.";
 			g = _getch();
 			break;
 		case 8:
 			xoa_khoa_hoc();
-			goto_XY(34, 42);
+			goto_XY(34, 2);
 			cout << "Nhan bat ki phim nao de tiep tuc.";
 			g = _getch();
 			break;
@@ -280,6 +284,7 @@ void Xem_thong_tin_giao_vu()
 		goto_XY(15, 13);
 		cout << "Moi ban chon: ";
 		cin >> chon;
+		cin.ignore();
 		switch (chon)
 		{
 		case 1:
@@ -337,6 +342,7 @@ void quan_li_ket_qua_hoc_tap()
 		goto_XY(15, 12);
 		cout << "Moi ban chon: ";
 		cin >> chon;
+		cin.ignore();
 		switch (chon)
 		{
 		case 1:
@@ -378,22 +384,20 @@ void Giao_vu(Nguoi_dung_hien_tai* nd)
 	{
 		char g;
 		Giao_dien_giao_vu();
-		goto_XY (15, 30);
+		goto_XY (15, 16);
 		cout << "Moi ban chon: ";
 		cin >> chon;
+		cin.ignore();
 		switch (chon)
 		{
 		case 1:
 			Xem_profile_GV(nd);
-			goto_XY(34, 2);
+			goto_XY(34, 16);
 			cout << "Nhan bat ki phim nao de tiep tuc.";
 			g = _getch();
 			break;
 		case 2:
 			Doi_mat_khau_GV(nd);
-			goto_XY(34, 2);
-			cout << "Nhan bat ki phim nao de tiep tuc.";
-			g = _getch();
 			break;
 		case 3:
 			system("cls");
@@ -439,7 +443,6 @@ void Xem_profile_GV(Nguoi_dung_hien_tai* nd)
 	goto_XY(34, 14);
 	cout << "CCCD: " << nd->cccd;
 	goto_XY(34, 15);
-	system("pause");
 }
 
 void Doi_mat_khau_GV(Nguoi_dung_hien_tai* nd)

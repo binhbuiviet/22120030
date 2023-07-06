@@ -1,5 +1,10 @@
 ﻿#include "chung.h"
 
+
+Thoi_gian_hien_tai tght;
+string nam_hoc_hien_tai = "";
+string hoc_ki = ""; //Mục đích của string này là để tạo folder học kì, gán nó trong folder năm học đã tạo trước đó
+string thong_tin_cac_khoa_hoc = "";
 //Lấy thời gian hiện tại
 void Lay_thoi_gian_hien_tai()
 {
