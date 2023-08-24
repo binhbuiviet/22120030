@@ -291,7 +291,8 @@ void tao_hoc_ky() //LƯU Ý: PHẢI KIỂM TRA TẠO NĂM HỌC TRƯỚC THÌ M�
 		cin >> hk;
 	}
 	goto_XY(34, 11);
-	hoc_ki = nam_hoc_hien_tai + "/Hoc ki " + to_string(hk); //Mục đích là để lưu folder học kì vào folder năm học, tuy nhiên CÓ THỂ CHƯA ĐÚNG
+	hoc_ki = nam_hoc_hien_tai + "/Hoc ki " + to_string(hk); //Mục đích là để lưu folder học kì vào folder năm học
+	thong_tin_cac_khoa_hoc = hoc_ki + "/Thong tin cac khoa hoc.csv";
 	//Kiểm tra xem học kì đã được khởi tạo chưa
 	if (Kiem_tra_folder(hoc_ki))
 	{
@@ -319,7 +320,6 @@ void tao_hoc_ky() //LƯU Ý: PHẢI KIỂM TRA TẠO NĂM HỌC TRƯỚC THÌ M�
 	else
 		cout << "Co loi khi tao hoc ki nay. Vui long thu lai.\n";
 	//Tạo một file csv lưu tất cả các thông tin của các khóa học
-	thong_tin_cac_khoa_hoc = hoc_ki + "/Thong tin cac khoa hoc.csv";
 	ofstream info_courses;
 	info_courses.open(thong_tin_cac_khoa_hoc);
 	info_courses << "Ma mon hoc,Ten khoa hoc,Ten lop,Ten giang vien,So tin chi,So luong sinh vien toi da,Buoi hoc,Khung gio hoc\n";
@@ -404,7 +404,7 @@ void tao_khoa_hoc()
 		goto_XY(34, 18);
 		cout << "Khoa hoc da duoc tao xong.";
 	}
-	string INFO; //Đây là để tạo file txt chứa thông tin khóa học
+	string INFO; //Đây là để tạo file csv chứa thông tin khóa học
 	INFO = Khoa_hoc + "/Thong tin khoa hoc.csv";
 	fstream nhap_info;
 	nhap_info.open(INFO, ios_base::out);
@@ -428,6 +428,7 @@ void tao_khoa_hoc()
 void Dang_danh_sach_sinh_vien_vao_khoa_hoc()
 {
 	//Nhập tên khóa học muốn thêm sinh viên
+	system("cls");
 	string course;
 	goto_XY(34, 10);
 	cout << "Nhap ten khoa hoc: ";
@@ -461,7 +462,7 @@ void Dang_danh_sach_sinh_vien_vao_khoa_hoc()
 	ifstream fin;
 	string link;
 	goto_XY(34, 12);
-	cout << "\nNhap lien ket chua danh sach sinh vien ban muon them vao: ";
+	cout << "Nhap lien ket chua danh sach sinh vien ban muon them vao: ";
 	goto_XY(34, 13);
 	getline(cin, link);
 	fin.open(link);
@@ -567,6 +568,7 @@ void Menu_cap_nhat_khoa_hoc(khoa_hoc*& k)
 	k->buoi_hoc = "Thu " + to_string(buoihoc);
 	Xoa_dong(17);
 	Xoa_dong(18);
+	cin.ignore();
 
 	goto_XY(34, 17);
 	cout << "Khung gio: ";
@@ -607,6 +609,7 @@ void Cap_nhat_khoa_hoc()
 	fin.close();
 
 	//Hỏi xem người dùng muốn cập nhật thông tin của khóa học nào
+	system("cls");
 	string ten, lop, course;
 	goto_XY(34, 10);
 	cout << "Nhap ten khoa hoc ban muon cap nhat: ";
@@ -617,7 +620,7 @@ void Cap_nhat_khoa_hoc()
 	khoa_hoc* a = l.pHead;
 	while (a != nullptr)
 	{
-		if (a->ten_khoa_hoc == ten && a->ten_khoa_hoc == lop)
+		if (a->ten_khoa_hoc == ten && a->ten_lop == lop)
 			break;
 		a = a->pNext;
 	}
@@ -704,7 +707,7 @@ void Them_mot_sinh_vien_vao_khoa_hoc()
 	}
 	fin.close();
 	Them_sv_vao_duoi_danh_sach(l, sv);
-	string info_course = course + "/Thong tin khoa hoc.txt";
+	string info_course = course + "/Thong tin cac khoa hoc.csv";
 	ifstream fin_info;
 	fin_info.open(info_course);
 	string Info_course;
@@ -841,7 +844,7 @@ void xoa_khoa_hoc()
 	khoa_hoc* b = nullptr;
 	while (a != nullptr)
 	{
-		if (a->ten_khoa_hoc == ten && a->ten_khoa_hoc == lop)
+		if (a->ten_khoa_hoc == ten && a->ten_lop == lop)
 			break;
 		b = a;
 		a = a->pNext;
@@ -1030,7 +1033,7 @@ void xem_ds_khoa_hoc()
 		string ten = nam_hoc + "/Hoc ki " + to_string(hoc_ki);
 	}
 	ifstream fin;
-	fin.open(ten + "/Thong tin khoa hoc.csv");
+	fin.open(ten + "/Thong tin cac khoa hoc.csv");
 	string temp;
 	getline(fin, temp, '\n');
 	List_khoa_hoc l;
@@ -1055,11 +1058,12 @@ void xem_sv_trong_khoa_hoc()
 	cout << "Ten khoa hoc: ";
 	string nam_hoc, ten_khoa_hoc;
 	int hoc_ki;
-	goto_XY(48, 10);
+	goto_XY(48, 5);
 	getline(cin, nam_hoc);
-	goto_XY(50, 11);
+	goto_XY(50, 6);
 	cin >> hoc_ki;
-	goto_XY(48, 12);
+	cin.ignore();
+	goto_XY(48, 7);
 	getline(cin, ten_khoa_hoc);
 	string ten = nam_hoc + "/Hoc ki " + to_string(hoc_ki) + "/" + ten_khoa_hoc + "/Danh sach Sinh vien.csv";
 
@@ -1082,6 +1086,7 @@ void xem_sv_trong_khoa_hoc()
 		getline(cin, nam_hoc);
 		goto_XY(50, 11);
 		cin >> hoc_ki;
+		cin.ignore();
 		goto_XY(48, 12);
 		getline(cin, ten_khoa_hoc);
 		string ten = nam_hoc + "/Hoc ki " + to_string(hoc_ki) + "/" + ten_khoa_hoc + "/Danh sach Sinh vien.csv";
@@ -1101,6 +1106,7 @@ void xem_sv_trong_khoa_hoc()
 	}
 	fin.close();
 
+	system("cls");
 	ve_cau_truc_them_sv_vao_lop(6, 9);
 	int x = 6;
 	int y = 9;

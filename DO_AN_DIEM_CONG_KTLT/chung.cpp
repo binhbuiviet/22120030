@@ -141,12 +141,14 @@ void Xoa_khoa_hoc_khoi_dau_danh_sach(List_khoa_hoc& l)
 		return;
 	khoa_hoc* temp = l.pHead;
 	l.pHead = l.pHead->pNext;
+	temp->pNext = nullptr;
 	delete temp;
 }
 
 void xoa_khoa_hoc_bat_ki_khoi_danh_sach(List_khoa_hoc& l, khoa_hoc* a, khoa_hoc* b)
 {
 	b->pNext = a->pNext;
+	a->pNext = nullptr;
 	delete a;
 }
 
@@ -556,9 +558,10 @@ void bang_ds_khoa_hoc(List_khoa_hoc l)
 		cout << "|";
 		goto_XY(x + 113, y + stt);
 		cout << k->khung_gio;
+		k = k->pNext;
 	}
 	y--;
-	ve_hop(x, y, 146, stt + 1);
+	ve_hop(x, y-1, 119, stt + 3);
 }
 
 void doc_sv_co_diem_tu_file(ifstream& fin, Diem_so_sv* d)
